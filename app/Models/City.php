@@ -11,9 +11,9 @@ use App\Models\Region;
 
 class City extends Model implements HasMedia
 {
-    protected $fillable = [
-        'name'
-    ];
+    // protected $fillable = [
+    //     'name','city_image'
+    // ];
     use HasFactory,SoftDeletes,InteractsWithMedia;
     protected $table = 'cities';
     protected $dates = ['deleted_at'];

@@ -31,6 +31,8 @@ return new class extends Migration
         $table->string('street_width')->nullable();
         $table->string('location')->nullable();
         $table->string('features')->nullable();
+        $table->string('estate_image')->nullable();
+        $table->string('estate_video')->nullable();
         $table->foreignId('neighborhood_id')->constrained()->cascadeOnDelete()->nullable();
         $table->foreignId('owner_id')->constrained()->cascadeOnDelete()->nullable();
         $table->timestamps();
