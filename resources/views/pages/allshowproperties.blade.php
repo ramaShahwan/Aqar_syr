@@ -42,8 +42,7 @@ background-attachment: fixed;
 				<div class=" property_col">
 					<div class="property">
 						<div class="property_image">
-							<img  src="{{ $property->image->original_url }}" alt="" style=" width: 1050px; height:400px;">
-
+							<img src="{{URL::asset('/img/estate/'.$property->estate_image)}}" alt="" style=" width: 1050px; height:400px;">
 						</div>
 						<div class="property_body text-center" style="display: flex;
                                   justify-content: space-evenly;
@@ -91,7 +90,7 @@ background-attachment: fixed;
                         <div class="property_image">
 
 
-                            <video src="{{ $property->video->original_url }}"   style=" width: 1050px; height:300px;"  controls muted></video>
+                            <video src="{{URL::asset('/img/estate/'.$property->estate_video)}}"   style=" width: 1050px; height:300px;"  controls muted></video>
 
 						</div>
 

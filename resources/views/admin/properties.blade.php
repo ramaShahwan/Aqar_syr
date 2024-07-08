@@ -62,8 +62,8 @@
                                     <td style="text-align: center;font-size: 20px;">{{$call->neighborhood->name}}</td>
 
                                     <td style="text-align: center;font-size: 20px;">{{$call->features}}</td>
-                                    @if( $call->video)
-                                    <td style="text-align: center;font-size: 20px;"><video src="{{ $call->video->original_url }}" width="100px"height="50px" controls></video></td>
+                                    @if( $call->estate_video)
+                                    <td style="text-align: center;font-size: 20px;"><video src="{{URL::asset('/img/estate/'.$call->estate_video)}}" width="100px"height="50px" controls></video></td>
                                     @endif
                                     <td style="text-align: center;font-size: 20px;">{{$call->location}}</td>
                                     <td style="text-align: center;font-size: 20px;">{{$call->street_width}}</td>
@@ -80,7 +80,7 @@
                                     <td style="text-align: center;font-size: 20px;">{{$call->room}}</td>
                                     <td style="text-align: center;font-size: 20px;">{{$call->purpose}}</td>
                                     <td style="text-align: center;font-size: 20px;">{{$call->type}}</td>
-                                    <td style="text-align: center;font-size: 20px;"><img src="{{ $call->image->original_url }}" alt="{{ $call->name }}"width="100px"height="50px"></td>
+                                    <td style="text-align: center;font-size: 20px;"><img src="{{URL::asset('/img/estate/'.$call->estate_image)}}" width="100px"height="50px"></td>
                                     <td style="text-align: center;font-size: 20px;">{{$call->name}}</td>
 
                                 </tr>

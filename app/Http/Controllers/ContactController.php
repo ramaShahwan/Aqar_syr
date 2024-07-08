@@ -12,37 +12,38 @@ class ContactController extends Controller
 {
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            // 'email' => 'required'| 'string'|'lowercase'|'email'| 'max:255',
+            'email' => 'required|email',
+            'message' => 'required|max:255',
+          ]);
+
         $contact = new Contact;
         $contact->name = $request->name;
         $contact->email = $request->email;
         $contact->message = $request->message;
         $contact->save();
-        // return response([
-        //     'contact'=>$contact,
-        // ],200);
         return redirect()->back() ;
         // return redirect()->back()->with('message','تم الإضافة');
     }
 
     public function index(Request $request)
     {
-        $search=$request->search;
-        $contacts=Contact::when($search, function ($query, $search)
-        {$query->where('name','like','%'.$search.'%');
-        })->get();
-
-        // return view('pages.home',compact('contacts'));
-        // return response([
-        //     'contacts$contacts'=>$contacts,
-        // ],200);
+        // $search=$request->search;
+        // $contacts=Contact::when($search, function ($query, $search)
+        // {$query->where('name','like','%'.$search.'%');
+        // })->get();
+        $contacts=Contact::all();
         return view('admin.contectadmin',compact('contacts'));
     }
 
     public function destroy($id)
     {
-        $city=Contact::whereId($id)->first();
-        $city->delete();
-        // return 200;
+        // $city=Contact::whereId($id)->first();
+        // $city->delete();
+        
+        Contact::findOrFail($id)->delete();
         return redirect()->back();
     }
 }

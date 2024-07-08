@@ -170,13 +170,11 @@ font-family: "Cairo", sans-serif;
 
 
 				<div >
-					<!-- <img class="img image" src="{{ $call->image->original_url }}" alt="{{ $call->name }}" style="">
-                    <div class="city_title" style="    margin-top: 10px;color: #203e60; text-align: center; margin-left: 30px;margin-right: -13px;">{{$call->name}}</div> -->
+                    {{-- <div class="city_title" style="    margin-top: 10px;color: #203e60; text-align: center; margin-left: 30px;margin-right: -13px;">{{$call->name}}</div> --> --}}
 
 					<div class="city" style="    border-radius: 50px;">
-							<a href="{{url('property/get_by_city',$call->name)}}" >
-								<!-- <div class="city_title">{{$call->name}}</div> -->
-                                <img class="img image" src="{{ $call->image->original_url }}" alt="{{ $call->name }}" style="">
+							{{-- <a href="{{url('property/get_by_city',$call->name)}}" > --}}
+                                <img class="img image"src="{{URL::asset('/img/city/'.$call->city_image)}}" style="">
                     <div class="city_title" style='   margin-top: 10px;color: #203e60; text-align: center; margin-left: 30px;margin-right: -13px;font-family: "Cairo", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -191,18 +189,7 @@ font-family: "Cairo", sans-serif;
 			@endforeach
 		</div>
 		<!-- <div class="cities_container d-flex flex-row flex-wrap align-items-start justify-content-between">
-			@foreach($cities as $call)
-
-				<div class="city">
-					<img src="{{ $call->image->original_url }}" alt="aaa">
-					<div class="city_overlay">
-							<a href="#" class="d-flex flex-column align-items-center justify-content-center">
-								<div class="city_title">{{$call->name}}</div>
-							</a>
-					</div>
-				</div>
-
-			@endforeach
+		
 		</div> -->
 </div>
 <div class="contact"style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/property_6.jpg);width: 100%;background-size: cover;background-position: center center;">

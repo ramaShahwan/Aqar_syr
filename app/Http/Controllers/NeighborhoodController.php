@@ -19,12 +19,14 @@ class NeighborhoodController extends Controller
             ->orWhereHas('region', function ($query) use ($search) {
                 $query->where('name', 'like', '%'.$search.'%');});
         })->get();
+
         return view('admin.neighborhoods',compact('neighborhoods'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
+
     public function create()
     {
         $regions = Region::all();
@@ -36,13 +38,16 @@ class NeighborhoodController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'region_id' => 'required',
+          ]);
         // $validated = $request->validated();
         $neighborhood = new Neighborhood;
         $neighborhood->name = $request->name;
         $neighborhood->region_id = $request->region_id;
         $neighborhood->save();
         return redirect()->back()->with('message','تم الإضافة');
-
     }
 
     /**
@@ -58,9 +63,12 @@ class NeighborhoodController extends Controller
      */
     public function edit($id)
     {
-        $data=Neighborhood::whereId($id)->get();
-        $data = $data[0];
+        $data = Neighborhood::findOrFail($id);
+
+        // $data=Neighborhood::whereId($id)->get();
+        // $data = $data[0];
         //    dd($data);
+
         $regions = Region::all();
         return view('admin.updateneighborhoods', compact('data','regions'));
     }
@@ -70,13 +78,19 @@ class NeighborhoodController extends Controller
      */
     public function update(Request $request, Neighborhood $neighborhood)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'region_id' => 'required',
+          ]);
 
-        $neighborhood = Neighborhood::whereId($request->id)->first();
+        // $neighborhood = Neighborhood::whereId($request->id)->first();
+        $neighborhood = Neighborhood::findOrFail($request->id);
         $neighborhood->name = $request->name;
         $neighborhood->region_id = $request->region_id;
-        $neighborhood->save();
-        $regions = Region::all();
-        return redirect()->back()->with(['regions' => $regions,'message'=>'تم التعديل']);
+        $neighborhood->update();
+
+        // $regions = Region::all();
+        return redirect()->back()->with(['message'=>'تم التعديل']);
     }
 
     /**
@@ -84,8 +98,9 @@ class NeighborhoodController extends Controller
      */
     public function destroy($id)
     {
-        $neighborhood= Neighborhood::whereId($id)->first();
-        $neighborhood->delete();
+        // $neighborhood= Neighborhood::whereId($id)->first();
+        // $neighborhood->delete();
+        Neighborhood::findOrFail($id)->delete();
         return redirect()->back();
     }
 }

@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Region;
 use App\Models\Neighborhood;
 use App\Models\Owner;
+use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\DB;
 class PropertyController extends Controller
 {
@@ -16,41 +17,40 @@ class PropertyController extends Controller
      */
     public function index(Request $request)
     {
-        $search=$request->search;
-        $props = Property::with('owner','neighborhood')->
-        when($search, function ($query, $search)
-        {$query->where('name','like','%'.$search.'%')
-               ->orWhere('type','like','%'.$search.'%')
-               ->orWhere('purpose','like','%'.$search.'%')
-               ->orWhere('state','like','%'.$search.'%')
-               ->orWhere('space','like','%'.$search.'%')
-               ->orWhere('direction','like','%'.$search.'%')
-               ->orWhere('license','like','%'.$search.'%')
-               ->orWhereHas('owner', function ($query) use ($search) {
-                $query->where('name', 'like', '%'.$search.'%');})
-               ->orWhereHas('neighborhood', function ($query) use ($search) {
-                $query->where('name', 'like', '%'.$search.'%');});
-        })->get();
+        // $search=$request->search;
+        // $props = Property::with('owner','neighborhood')->
+        // when($search, function ($query, $search)
+        // {$query->where('name','like','%'.$search.'%')
+        //        ->orWhere('type','like','%'.$search.'%')
+        //        ->orWhere('purpose','like','%'.$search.'%')
+        //        ->orWhere('state','like','%'.$search.'%')
+        //        ->orWhere('space','like','%'.$search.'%')
+        //        ->orWhere('direction','like','%'.$search.'%')
+        //        ->orWhere('license','like','%'.$search.'%')
+        //        ->orWhereHas('owner', function ($query) use ($search) {
+        //         $query->where('name', 'like', '%'.$search.'%');})
+        //        ->orWhereHas('neighborhood', function ($query) use ($search) {
+        //         $query->where('name', 'like', '%'.$search.'%');});
+        // })->get();
 
 
-        $props->transform(function ($prop) {
-            $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
+        // $props->transform(function ($prop) {
+        //     $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
 
-                $prop->setRelation('video', $prop->media->where('collection_name', 'property_video')->first());
+        //         $prop->setRelation('video', $prop->media->where('collection_name', 'property_video')->first());
 
 
-            $prop->unsetRelation('media');
-            return $prop;
-        });
+        //     $prop->unsetRelation('media');
+        //     return $prop;
+        // });
 
+        $props = Property::all();
         return view('admin.properties',compact('props'));
 
     }
     public function create(Request $request)
     {
         $cities = City::all();
-        // $regions = Region::where('city_id',$request->city_id)->get();
-        // $neighborhoods = Neighborhood::all();
         $owners = Owner::all();
         return view('admin.addproperties')->with(['cities' => $cities,'owners'=> $owners]);
     }
@@ -59,6 +59,16 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'purpose' => 'required',
+           'room' => 'nullable|integer|min:0',
+           'bathroom'=>'nullable|integer|min:0',
+          'space' => 'nullable|min:0',
+         'neighborhood_id' => 'required',
+         'owner_id' => 'required',
+          ]);
         // $validated = $request->validated();
         $property = new Property;
         $property->name = $request->name;
@@ -73,7 +83,7 @@ class PropertyController extends Controller
         $property->license = $request->license;
         $property->floor = $request->floor;
         $property->description = $request->description;
-        $property->number_show = $request->number_show;
+        // $property->number_show = $request->number_show;
         $property->meter_price = $request->meter_price;
         $property->street_width = $request->street_width;
         $property->location = $request->location;
@@ -81,13 +91,32 @@ class PropertyController extends Controller
 
         $property->neighborhood_id = $request->neighborhood_id;
         $property->owner_id = $request->owner_id;
-        $property->addMedia($request->file('image'))->toMediaCollection('property_image');
-        if($request->video){
-            $property->addMedia($request->file('video'))->toMediaCollection('property_video');
-
-        }
-
         $property->save();
+
+
+        // $property->addMedia($request->file('image'))->toMediaCollection('property_image');
+        // if($request->video){
+        //     $property->addMedia($request->file('video'))->toMediaCollection('property_video');
+        // }
+
+         // store image
+         if($request->hasFile('estate_image')){
+            $newImage = $request->file('estate_image');
+            //for change image name
+            $newImageName = 'image_' .  $property->id . '.' . $newImage->getClientOriginalExtension();
+            $newImage->move(public_path('img/estate/'), $newImageName);
+            $property->estate_image = $newImageName;
+            $property->update();
+         }
+           // store video
+         if($request->hasFile('estate_video')){
+            $newVideo = $request->file('estate_video');
+            //for change video name
+            $newVideoName = 'video_' .  $property->id . '.' . $newVideo->getClientOriginalExtension();
+            $newVideo->move(public_path('img/estate/'), $newVideoName);
+            $property->estate_video = $newVideoName;
+            $property->update();
+         }
         return redirect()->back()->with('message','تم الإضافة');
     }
     /**
@@ -95,48 +124,35 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-
-        $property = Property::with('neighborhood.region.city')->whereId($id)->get();
-
-        $property[0]->number_show++;
-        $property->transform(function ($prop) {
-            $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
-
-                $prop->setRelation('video', $prop->media->where('collection_name', 'property_video')->first());
-
-
-            $prop->unsetRelation('media');
-            return $prop;
-
-        });
-    //     if($property[0]->video){
-    //   dd($property->video);
-    // }
-        $property = $property[0];
+        $property = Property::with('neighborhood.region.city')->whereId($id)->first();
+        $property->number_show++;
+        // $property->transform(function ($prop) {
+        //     $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
+        //      $prop->setRelation('video', $prop->media->where('collection_name', 'property_video')->first());
+        //     $prop->unsetRelation('media');
+        //     return $prop;
+        // });
+        // $property = $property[0];
         $property->save();
-        return view('pages.allshowproperties', compact('property'));
-        // return response([
-        //     'property'=>$property,
-        // ],200);
 
+        return view('pages.allshowproperties', compact('property'));
     }
 
 
     public function edit($id)
     {
-        $data=Property::whereId($id)->get();
-        $data->transform(function ($property) {
-            $property->setRelation('image', $property->media->where('collection_name', 'property_image')->first());
-            $property->setRelation('video', $property->media->where('collection_name', 'property_video')->first());
-            $property->unsetRelation('media');
-            return $property;
-
-        });
-
-
-        $data = $data[0];
+        // $data=Property::whereId($id)->get();
+        // $data->transform(function ($property) {
+        //     $property->setRelation('image', $property->media->where('collection_name', 'property_image')->first());
+        //     $property->setRelation('video', $property->media->where('collection_name', 'property_video')->first());
+        //     $property->unsetRelation('media');
+        //     return $property;
+        // });
+        // $data = $data[0];
         //    dd($data);
         // $cities = City::all();
+
+        $data = Property::findOrFail($id);
         $owners = Owner::all();
         // $neighborhoods = Neighborhood::all();
         return view('admin.updateproperties', compact('data','owners'));
@@ -146,8 +162,23 @@ class PropertyController extends Controller
      */
     public function update(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'purpose' => 'required',
+           'room' => 'nullable|integer|min:0',
+           'bathroom'=>'nullable|integer|min:0',
+          'space' => 'nullable|min:0',
+         'neighborhood_id' => 'required',
+         'owner_id' => 'required',
+          ]);
         // $validated = $request->validated();
-        $property = Property::whereId($request->id)->first();
+        // $property = Property::whereId($request->id)->first();
+
+        $property = Property::findOrFail($request->id);
+        $oldImageName=$property->estate_image;
+        $oldVideoName=$property->estate_video;
+
         $property->name = $request->name;
         $property->type = $request->type;
         $property->purpose = $request->purpose;
@@ -160,7 +191,7 @@ class PropertyController extends Controller
         $property->license = $request->license;
         $property->floor = $request->floor;
         $property->description = $request->description;
-        $property->number_show = $request->number_show;
+        //$property->number_show = $request->number_show;
         $property->meter_price = $request->meter_price;
         $property->street_width = $request->street_width;
         $property->location = $request->location;
@@ -170,82 +201,83 @@ class PropertyController extends Controller
             $property->neighborhood_id = $request->neighborhood_id;
         }
         $property->owner_id = $request->owner_id;
-        if($request->image)
-        {
-            $property->clearMediaCollection('property_image');
-            $property->addMedia($request->file('image'))->toMediaCollection('property_image');
-        }
-        if($request->video)
-        {
-            $property->clearMediaCollection('property_video');
-            $property->addMedia($request->file('video'))->toMediaCollection('property_video');
-        }
-        $property->save();
+
+        // if($request->image)
+        // {
+        //     $property->clearMediaCollection('property_image');
+        //     $property->addMedia($request->file('image'))->toMediaCollection('property_image');
+        // }
+        // if($request->video)
+        // {
+        //     $property->clearMediaCollection('property_video');
+        //     $property->addMedia($request->file('video'))->toMediaCollection('property_video');
+        // }
         // $cities = City::all();
-        $owners = Owner::all();
+
+     // update newImage
+     if ($request->hasFile('estate_image')) {
+      // Delete the old image from the server
+     if ($oldImageName) {
+       File::delete(public_path('img/estate/') . $oldImageName);
+      }
+     // Upload new image
+       $newImage = $request->file('estate_image');
+       $newImageName = 'image_' . $property->id . '.' . $newImage->getClientOriginalExtension();
+       $newImage->move(public_path('img/estate/'), $newImageName);
+       // Update the image record with the new image name
+       $property->estate_image = $newImageName;
+      }
+
+         // update newVideo
+     if ($request->hasFile('estate_video')) {
+        // Delete the old video from the server
+       if ($oldVideoName) {
+         File::delete(public_path('img/estate/') . $oldVideoName);
+        }
+       // Upload new video
+         $newVideo = $request->file('estate_video');
+         $newVideoName = 'video_' . $property->id . '.' . $newVideo->getClientOriginalExtension();
+         $newVideo->move(public_path('img/estate/'), $newVideoName);
+         // Update the image record with the new image name
+         $property->estate_video = $newVideoName;
+        }
+      $property->update();
         // $neighborhoods = Neighborhood::all();
-        return redirect()->back()->with(['owners' => $owners,'message'=>'تم التعديل']);
-        // return response([
-        //     'property'=>$property,
-        // ],200);
+      //   /** */  $owners = Owner::all();
+      //  return redirect()->back()->with(['owners' => $owners,'message'=>'تم التعديل']);
+        return redirect()->back()->with(['message'=>'تم التعديل']);
     }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        $property=Property::whereId($id)->first();
-        $property->clearMediaCollection('property_image');
-        $property->delete();
-        // return response(200);
+        // $property=Property::whereId($id)->first();
+        // $property->clearMediaCollection('property_image');
+        // $property->delete();
+        Property::findOrFail($id)->delete();
         return redirect()->back();
     }
-    public function regions_for_city(Request $request)
-    {
-        $regions = Region::where('city_id',$request->city_id)->get();
-        // $regions = Region::where('city_id',$request->id)->get();
-        return response([
-            'regions'=>$regions,
-        ],200);
-    }
-    public function neighborhoods_for_region(Request $request)
-    {
-        $neighborhoods = Neighborhood::where('region_id',$request->city_id)->get();
-        // $neighborhoods = Region::where('city_id',$request->id)->get();
-        return response([
-            'neighborhoods'=>$neighborhoods,
-        ],200);
-    }
-
+  
     public function getRegion(Request $request)
     {
-        // $data['regions'] = Region::where("city_id", $request->city_id)
-        //                         ->get(["name", "id"]);
         $regions = DB::table('regions')->where('city_id', $request->city_id)->get();
         if(count($regions)>0){
             return response()->json($regions);
-
         }
-
-
     }
+
     public function getneighborhood(Request $request)
     {
-        // $data['neighborhoods'] = Neighborhood::where("region_id", $request->region_id)
-        //                             ->get(["name", "id"]);
-
-        // return response()->json($data);
         $neighborhoods = DB::table('neighborhoods')->where('region_id', $request->region_id)->get();
         if(count($neighborhoods)>0){
             return response()->json($neighborhoods);
 
         }
-
-
     }
+
     public function get_by_city($cityName)
     {
-        // $cityName=$request->cityName;
         session(['selected_city' => $cityName]);
         $props = Property::with(['neighborhood.region.city'])
         ->whereHas('neighborhood.region.city', function ($query) use ($cityName) {
@@ -253,14 +285,14 @@ class PropertyController extends Controller
         })
         ->get();
 
-        $props->transform(function ($prop) {
-            $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
-            $prop->unsetRelation('media');
-            return $prop;
-        });
-
+        // $props->transform(function ($prop) {
+        //     $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
+        //     $prop->unsetRelation('media');
+        //     return $prop;
+        // });
             return view('pages.alltype', compact('props'));
     }
+
     public function get_by_city_type($type, $cityName,$purpose)
     {
 
@@ -273,11 +305,11 @@ class PropertyController extends Controller
         })
         ->get();
 
-        $props->transform(function ($prop) {
-            $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
-            $prop->unsetRelation('media');
-            return $prop;
-        });
+        // $props->transform(function ($prop) {
+        //     $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
+        //     $prop->unsetRelation('media');
+        //     return $prop;
+        // });
         return view('pages.flat', compact('props'));
     }
     public function search(Request $request)
@@ -303,20 +335,17 @@ class PropertyController extends Controller
         })->get();
 
 
-        $props->transform(function ($prop) {
-            $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
+        // $props->transform(function ($prop) {
+        //     $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
 
-                $prop->setRelation('video', $prop->media->where('collection_name', 'property_video')->first());
+        //         $prop->setRelation('video', $prop->media->where('collection_name', 'property_video')->first());
 
 
-            $prop->unsetRelation('media');
-            return $prop;
-        });
-        // return response([
-        //     'props'=>$props,
-        // ],200);
+        //     $prop->unsetRelation('media');
+        //     return $prop;
+        // });
+     
         return view('pages.alltype',compact('props'));
-
     }
 
 }

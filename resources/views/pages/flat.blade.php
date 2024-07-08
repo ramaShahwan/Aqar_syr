@@ -40,7 +40,7 @@ background-attachment: fixed;
 				<div class=" property_col" style="margin-left: 6px;">
 					<div class="property">
 						<div class="property_image">
-							<img  src="{{ $call->image->original_url }}" alt="{{ $call->name }}" style="width: 320px;height: 250px;">
+							<img  src="{{URL::asset('/img/estate/'.$call->estate_image)}}" style="width: 320px;height: 250px;">
 							<div class="tag_featured property_tag tt"><a href="{{url('property/show', $call->id)}}" style="background-color:#3d3d6e;">المزيد من التفاصيل</a></div>
 						</div>
 						<div class="property_body text-center">

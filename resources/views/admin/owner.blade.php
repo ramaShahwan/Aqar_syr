@@ -45,7 +45,7 @@
                                     <td style="text-align: center;font-size: 20px;">{{$calll->description}}</td>
                                     <td style="text-align: center;font-size: 20px;">{{$calll->phone}}</td>
                                     <td style="text-align: center;font-size: 20px;">{{$calll->email}} </td>
-                                    <td style="text-align: center;font-size: 20px;"><img src="{{ $calll->image->original_url }}" alt="{{ $calll->name }}" width="100px"></td>
+                                    <td style="text-align: center;font-size: 20px;"> <img src="{{URL::asset('/img/owner/'.$calll->owner_image)}}"  width="100px"></td>
                                     <td style="text-align: center;font-size: 20px;"> {{$calll->name}}</td>
 
                                 </tr>

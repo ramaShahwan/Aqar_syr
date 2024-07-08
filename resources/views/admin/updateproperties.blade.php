@@ -14,22 +14,22 @@
         <input type="text" name="name"  class="form-control" style="background-color: white; color:black; text-align: end;" value="{{$data-> name}}" >
      </div>
      <div class="row mb-3">
-                            <label for="image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
+                            <label for="estate_image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
 
                             <div class="col-md-6">
-                            <img src="{{ $data->image->original_url }}" width="200px" style="margin-left: 120px;">
-                                <input id="image" type="file" class="form-control " name="image" style="background-color: white; margin-left: 120px;" >
+                                <img src="{{URL::asset('/img/estate/'.$data->estate_image)}}" width="200px" style="margin-left: 120px;">
+                                <input id="estate_image" type="file" class="form-control " name="estate_image" style="background-color: white; margin-left: 120px;" >
 
 
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="video" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
+                            <label for="estate_video" class="form-label" style="margin-left: 400px;font-size: 20px;">الفيديو</label>
 
                             <div class="col-md-6">
-                            <video src="{{ $data->video->original_url }}" width="200px" style="margin-left: 120px;"></video>
+                            <video src="{{URL::asset('/img/estate/'.$data->estate_video)}}" width="200px" style="margin-left: 120px;"></video>
 
-                                <input id="video" type="file" class="form-control " name="video" style="background-color: white; margin-left: 120px;" >
+                                <input id="estate_video" type="file" class="form-control " name="estate_video" style="background-color: white; margin-left: 120px;" >
 
 
                             </div>

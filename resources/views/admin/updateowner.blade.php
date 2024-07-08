@@ -19,11 +19,11 @@
                                 @enderror
     </div>
     <div class="row mb-3">
-                            <label for="image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
+                            <label for="owner_image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
 
                             <div class="col-md-6">
-                            <img src="{{ $data->image->original_url }}" width="200px" style="margin-left: 120px;">
-                                <input id="image" type="file" class="form-control " name="image" required style="background-color: white; margin-left: 120px;" >
+                                <img src="{{URL::asset('/img/owner/'.$data->owner_image)}}" width="200px" style="margin-left: 120px;">
+                                <input id="owner_image" type="file" class="form-control " name="owner_image" required style="background-color: white; margin-left: 120px;" >
 
 
                             </div>

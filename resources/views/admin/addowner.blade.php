@@ -19,11 +19,12 @@
                                 @enderror
     </div>
     <div class="row mb-3">
-                            <label for="image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
+                            <label for="owner_image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
 
                             <div class="col-md-6">
-                            <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" required style="background-color: white; margin-left: 120px;" >
-                            @error('image')
+                            <input id="owner_image" type="file" class="form-control @error('owner_image') is-invalid @enderror"
+                             name="owner_image" required style="background-color: white; margin-left: 120px;" >
+                            @error('owner_image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -39,7 +39,7 @@
                                     <td style="text-align: center;font-size: 20px;"><a class="btn btn-sm btn-danger" onclick="return confirm('هل تريد الحذف')" href="{{url('city/destroy',$call->id)}}" style="width: 90px;">حذف</a>
                                     <a class="btn btn-sm btn-primary" href="{{url('city/edit', $call->id)}}" style="width: 90px;    background-color:#28a745">تعديل</a></td>
 
-                                    <td style="text-align: center;font-size: 20px;"><img src="{{ $call->image->original_url }}" alt="{{ $call->name }}"width="100px"></td>
+                                    <td style="text-align: center;font-size: 20px;"><img src="{{URL::asset('/img/city/'.$call->city_image)}}" width="100px"></td>
                                     <td style="text-align: center;font-size: 20px;">{{$call->name}}</td>
 
                                 </tr>
