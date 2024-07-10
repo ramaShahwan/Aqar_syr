@@ -41,6 +41,10 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'city_id' => 'required',
+          ]);
         // $validated = $request->validated();
         $region = new Region;
         $region->name = $request->name;
@@ -62,9 +66,11 @@ class RegionController extends Controller
      */
     public function edit($id)
     {
-        $data=Region::whereId($id)->get();
-        $data = $data[0];
+        // $data=Region::whereId($id)->get();
+        // $data = $data[0];
         //    dd($data);
+
+        $data = Region::findOrFail($id);
         $cities = City::all();
         return view('admin.updateregions', compact('data','cities'));
     }
@@ -74,13 +80,20 @@ class RegionController extends Controller
      */
     public function update(Request $request, Region $region)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'city_id' => 'required',
+          ]);
         // $validated = $request->validated();
-        $region = Region::whereId($request->id)->first();
+        // $region = Region::whereId($request->id)->first();
+
+        $region = Region::findOrFail($request->id);
         $region->name = $request->name;
         $region->city_id = $request->city_id;
         $region->save();
-        $cities = City::all();
-        return redirect()->back()->with(['cities' => $cities,'message'=>'تم التعديل']);
+        // $cities = City::all();
+        // return redirect()->back()->with(['cities' => $cities,'message'=>'تم التعديل']);
+        return redirect()->back()->with(['message'=>'تم التعديل']);
     }
 
     /**
@@ -88,8 +101,9 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
-        $region= Region::whereId($id)->first();
-        $region->delete();
+        // $region= Region::whereId($id)->first();
+        // $region->delete();
+        Region::findOrFail($id)->delete();
         return redirect()->back();
     }
 }

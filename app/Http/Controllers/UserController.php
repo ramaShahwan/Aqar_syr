@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class UserController extends Controller
 {
@@ -14,10 +16,9 @@ class UserController extends Controller
         // $user->givePermissionTo('edit articles');
         // Role::create(['name'=>'write']);
         // Permission::create(['name'=>'edit post']);
-
         // auth()->user()->givePermissionTo('edit articles');
+
         $users = User::role('writer')->get(); 
-        
     }
 
     /**
@@ -25,9 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
-
-
+ 
     }
 
     /**
