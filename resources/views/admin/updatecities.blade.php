@@ -15,20 +15,14 @@
 
 	<div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">الاسم</label>
-        <input type="text" name="name"  class="form-control" style="background-color: white; color:black; text-align: end;" value="{{$data-> name}}">
+        <input type="text" name="name"  class="form-control" style="background-color: white; color:black; text-align: end;" value="{{$data->name}}">
      </div>
-
-
-
-
      <div class="row mb-3">
                             <label for="city_image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
 
                             <div class="col-md-6">
-                              <img src="{{URL::asset('/img/city/'.$call->city_image)}}" width="200px" style="margin-left: 120px;">
+                              <img src="{{URL::asset('/img/city/'.$data->city_image)}}" width="200px" style="margin-left: 120px;">
                                 <input id="city_image" type="file" class="form-control " name="city_image" style="background-color: white; margin-left: 120px;" >
-
-
                             </div>
                         </div>
 

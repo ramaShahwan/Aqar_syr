@@ -102,11 +102,11 @@ Route::get('/contectadmin',[ContactController::class,'index'])-> name('contectad
 Route::prefix('city')->controller(CityController::class)->group(function(){
     Route::get('/create', 'create');
     Route::post('/store', 'store');
-    Route::get('edit/{city_id}', 'edit');
-    Route::post('update/{id}', 'update');
+    Route::get('/edit/{id}', 'edit');
+    Route::post('/update/{id}', 'update');
     Route::get('/cities', 'all_cities');
-    Route::get('show/{id}', 'show');
-    Route::get('destroy/{id}', 'destroy');
+    Route::get('/show/{id}', 'show');
+    Route::get('/destroy/{id}', 'destroy');
     // Route::post('a', 'register');
 });
 Route::prefix('owner')->controller(OwnerController::class)->group(function(){

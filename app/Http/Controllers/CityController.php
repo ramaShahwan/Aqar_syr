@@ -12,14 +12,30 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CityController extends Controller
 {
-    public function store(CreateCityRequest $request)
+  public function index()
+    {
+        // $search=$request->search;
+        // $cities=City::when($search, function ($query, $search)
+        // {$query->where('name','like','%'.$search.'%');
+        // })->get();
+
+        // $cities->transform(function ($city) {
+        //     $city->setRelation('image', $city->media->where('collection_name', 'city_image')->first());
+        //     $city->unsetRelation('media');
+        //     return $city;
+        // });
+        $cities =  City::all();
+        return view('pages.home',compact('cities'));
+    }
+
+    public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:cities,name',
+            'name' => 'required|unique:cities',
             'city_image' => 'required',
           ]);
 
-        // $validated = $request->validated();
+        // $valida  ted = $request->validated();
         $city = new City;
         $city->name = $request->name;
         // $city->addMedia($request->file('image'))->toMediaCollection('city_image');
@@ -38,24 +54,24 @@ class CityController extends Controller
      return redirect()->back()->with('message','تم الإضافة');
     }
 
-   public function edit($city_id)
+   public function edit($id)
    {
-    //     $data=City::whereId($city_id)->get();
-    //         $data->transform(function ($city) {
-    //             $city->setRelation('image', $city->media->where('collection_name', 'city_image')->first());
-    //             $city->unsetRelation('media');
-    //             return $city;
-    //         });
-    //   $data = $data[0];
+        // $data=City::whereId($city_id)->get();
+      //       $data->transform(function ($city) {
+      //           $city->setRelation('image', $city->media->where('collection_name', 'city_image')->first());
+      //           $city->unsetRelation('media');
+      //           return $city;
+      //       });
+      // $data = $data[0];
     //     //    dd($data);
 
-         $data = City::findOrFail($city_id);
+         $data = City::findOrFail($id);
          return view('admin.updatecities', compact('data'));
    }
-    public function update(UpdateCityRequest $request)
+    public function update(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:cities,name',
+            'name' => 'required|unique:cities',
             'city_image' => 'required',
           ]);
 
@@ -108,24 +124,7 @@ class CityController extends Controller
 
         return view('admin.cities',compact('cities'));
     }
-    public function index(Request $request)
-    {
-        $search = $request->search;;
-        $cities =  City::where('name', 'like', '%'.$search.'%')->select('name','city_image')->get();
-
-        // $search=$request->search;
-        // $cities=City::when($search, function ($query, $search)
-        // {$query->where('name','like','%'.$search.'%');
-        // })->get();
-
-        // $cities->transform(function ($city) {
-        //     $city->setRelation('image', $city->media->where('collection_name', 'city_image')->first());
-        //     $city->unsetRelation('media');
-        //     return $city;
-        // });
-
-        return view('pages.home',compact('cities'));
-    }
+  
    
     public function destroy($id)
     {

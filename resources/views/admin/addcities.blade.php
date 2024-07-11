@@ -17,10 +17,10 @@
 
 
      <div class="row mb-3">
-                            <label for="image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
+                            <label for="city_image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
 
                             <div class="col-md-6">
-                            <input id="image" type="file" class="form-control " name="image" required style="background-color: white; margin-left: 120px;" >
+                            <input id="city_image" type="file" class="form-control " name="city_image" required style="background-color: white; margin-left: 120px;" >
 
 
                             </div>
