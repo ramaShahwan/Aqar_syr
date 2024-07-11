@@ -15,14 +15,12 @@ class Neighborhood extends Model
     protected $fillable = [
         'name', 'region_id'
     ];
-    use HasFactory,SoftDeletes;
-    protected $dates = ['deleted_at'];
+
+    // use HasFactory,SoftDeletes;
+    // protected $dates = ['deleted_at'];
     protected $guarded=[];
     public function region(){
         return $this->belongsTo(Region::class);
     }
-    // public function properties()
-    // {
-    //     return $this->hasMany(Property::class);
-    // }
+
 }

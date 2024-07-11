@@ -10,10 +10,11 @@ use Spatie\MediaLibrary\HasMedia;
 use App\Models\Neighborhood;
 use App\Models\Owner;
 
-class Property extends Model implements HasMedia
+class Property extends Model 
+// class Property extends Model implements HasMedia
 {
-    use HasFactory,SoftDeletes,InteractsWithMedia;
-    protected $dates = ['deleted_at'];
+    // use HasFactory,SoftDeletes,InteractsWithMedia;
+    // protected $dates = ['deleted_at'];
     protected $guarded=[];
 
     public function owner()

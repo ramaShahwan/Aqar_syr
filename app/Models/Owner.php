@@ -9,10 +9,12 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
 use App\Models\Property;
 
-class Owner extends Model implements HasMedia
+class Owner extends Model
+// class Owner extends Model implements HasMedia
 {
-    use HasFactory,SoftDeletes,InteractsWithMedia;
-    protected $dates = ['deleted_at']; 
+    use HasFactory;
+    // use HasFactory,SoftDeletes,InteractsWithMedia;
+    // protected $dates = ['deleted_at']; 
     protected $guarded=[];
     public function properties()
     {

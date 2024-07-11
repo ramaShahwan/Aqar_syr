@@ -12,11 +12,9 @@ use App\Models\Neighborhood;
 
 class Region extends Model
 {
-    protected $fillable = [
-        'name', 'city_id'
-    ];
-    use HasFactory,SoftDeletes;
-    protected $dates = ['deleted_at'];
+   
+    // use HasFactory,SoftDeletes;
+    // protected $dates = ['deleted_at'];
     protected $guarded=[];
     public function city(){
         return $this->belongsTo(City::class);
