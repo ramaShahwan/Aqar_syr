@@ -34,7 +34,6 @@
                             </thead>
                             <tbody>
                             @foreach($cities as $call)
-                                <tr>
 
                                     <td style="text-align: center;font-size: 20px;"><a class="btn btn-sm btn-danger" onclick="return confirm('هل تريد الحذف')" href="{{url('city/destroy',$call->id)}}" style="width: 90px;">حذف</a>
                                     <a class="btn btn-sm btn-primary" href="{{url('city/edit',$call->id)}}" style="width: 90px;    background-color:#28a745">تعديل</a></td>

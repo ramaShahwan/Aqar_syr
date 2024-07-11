@@ -24,7 +24,7 @@ class CityController extends Controller
         //     $city->unsetRelation('media');
         //     return $city;
         // });
-        $cities =  City::all();
+        $cities = City::all();
         return view('pages.home',compact('cities'));
     }
 
