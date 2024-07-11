@@ -9,7 +9,7 @@
 
 <label for="" class="form-label" style="color: blue; font-size: 20px; text-align: center;">تعديل المدينة</label>
 
-<form action=" {{url('city/update',$data->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{url('city/update',$data->id)}}" method="post" enctype="multipart/form-data">
 
  @csrf
 

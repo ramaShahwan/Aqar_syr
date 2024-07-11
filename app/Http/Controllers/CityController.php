@@ -60,10 +60,10 @@ class CityController extends Controller
       //       $data->transform(function ($city) {
       //           $city->setRelation('image', $city->media->where('collection_name', 'city_image')->first());
       //           $city->unsetRelation('media');
-      //           return $city;
+      //           return $city ;
       //       });
       // $data = $data[0];
-    //     //    dd($data);
+     //     //    dd($data);
 
          $data = City::findOrFail($id);
          return view('admin.updatecities', compact('data'));
