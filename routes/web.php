@@ -106,7 +106,7 @@ Route::prefix('city')->controller(CityController::class)->group(function(){
     Route::post('/update/{id}', 'update');
     Route::get('/cities', 'all_cities');
     Route::get('/show/{id}', 'show');
-    Route::get('/destroy/{id}', 'destroy');
+    Route::post('/destroy/{id}', 'destroy');
     // Route::post('a', 'register');
 });
 Route::prefix('owner')->controller(OwnerController::class)->group(function(){
