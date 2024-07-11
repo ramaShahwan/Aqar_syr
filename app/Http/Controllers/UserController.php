@@ -32,17 +32,17 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateUserRequest $request)
-    {
-        $user=$request->user();
-        $role = Role::create(['name' => 'writer']);
-        $permission = Permission::create(['name' => 'edit articles']);
+    // public function store(CreateUserRequest $request)
+    // {
+    //     $user=$request->user();
+    //     $role = Role::create(['name' => 'writer']);
+    //     $permission = Permission::create(['name' => 'edit articles']);
 
-        $role->givePermissionTo($permission);
-        $permission->assignRole($role);
+    //     $role->givePermissionTo($permission);
+    //     $permission->assignRole($role);
         
-        return $user; 
-    }
+    //     return $user; 
+    // }
 
     /**
      * Display the specified resource.
