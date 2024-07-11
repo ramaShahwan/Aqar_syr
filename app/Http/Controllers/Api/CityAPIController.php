@@ -10,19 +10,9 @@
    {
        use ApiResponseTrait;
 
-       public function index(Request $request)
+       public function index()
        {
-           $search = $request->search;
-           $cities = City::when($search, function ($query, $search) {
-               $query->where('name', 'like', '%' . $search . '%');
-           })->get();
-
-           $cities->transform(function ($city) {
-               $city->setRelation('image', $city->media->where('collection_name', 'city_image')->first());
-               $city->unsetRelation('media');
-               return $city;
-           });
-
+           $cities = City::all();
            return $this->apiResponse($cities, 'ok', 200);
        }
    

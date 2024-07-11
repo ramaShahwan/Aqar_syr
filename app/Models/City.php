@@ -9,21 +9,20 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
 use App\Models\Region;
 
-class City extends Model implements HasMedia
+class City extends Model 
+// class City extends Model implements HasMedia
 {
     // protected $fillable = [
     //     'name','city_image'
     // ];
-    use HasFactory,SoftDeletes,InteractsWithMedia;
+    // use HasFactory,SoftDeletes,InteractsWithMedia;
+    use HasFactory;
     protected $table = 'cities';
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
     protected $guarded=[];
     public function properties()
     {
         return $this->hasMany(Property::class);
     }
-    // public function regions()
-    // {
-    //     return $this->hasMany(Region::class);
-    // }
+ 
 }

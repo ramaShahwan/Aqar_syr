@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('regions', function (Blueprint $table) {
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->id();
             $table->string('name')->nullable();
             $table->foreignId('city_id')->constrained()->cascadeOnDelete()->nullable();

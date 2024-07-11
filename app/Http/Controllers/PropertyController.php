@@ -66,7 +66,7 @@ class PropertyController extends Controller
            'room' => 'nullable|integer|min:0',
            'bathroom'=>'nullable|integer|min:0',
           'space' => 'nullable|min:0',
-         'neighborhood_id' => 'required',
+       //  'neighborhood_id' => 'required',
          'owner_id' => 'required',
           ]);
         // $validated = $request->validated();
@@ -169,7 +169,7 @@ class PropertyController extends Controller
            'room' => 'nullable|integer|min:0',
            'bathroom'=>'nullable|integer|min:0',
           'space' => 'nullable|min:0',
-         'neighborhood_id' => 'required',
+        // 'neighborhood_id' => 'required',
          'owner_id' => 'required',
           ]);
         // $validated = $request->validated();

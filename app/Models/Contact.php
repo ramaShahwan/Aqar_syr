@@ -9,13 +9,15 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
 use App\Models\Region;
 
-class Contact extends Model implements HasMedia
+class Contact extends Model 
+// class Contact extends Model implements HasMedia
 {
     protected $fillable = [
         'name'
     ];
-    use HasFactory,SoftDeletes,InteractsWithMedia;
-    protected $dates = ['deleted_at'];
+    // use HasFactory,SoftDeletes,InteractsWithMedia;
+    use HasFactory;
+    // protected $dates = ['deleted_at'];
     protected $guarded=[];
   
  
