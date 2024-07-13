@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use App\Models\City;
+use App\Models\Neighborhood;
+use App\Models\Property;
+
+
 
 class RegionController extends Controller
 {
@@ -103,6 +107,17 @@ class RegionController extends Controller
     {
         // $region= Region::whereId($id)->first();
         // $region->delete();
+       
+        $neighborhoods = Neighborhood::where('region_id',$id)->get();
+          foreach($neighborhoods as $neighborhood)
+          {
+          $properties = Property::where('neighborhood_id',$neighborhood->id)->get();
+            foreach($properties as $property)
+            {
+              $property->delete();
+            }
+            $neighborhood->delete();
+          }
         Region::findOrFail($id)->delete();
         return redirect()->back();
     }

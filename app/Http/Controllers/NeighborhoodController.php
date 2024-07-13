@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Neighborhood;
 use Illuminate\Http\Request;
 use App\Models\Region;
+use App\Models\Property;
+
 
 class NeighborhoodController extends Controller
 {
@@ -100,6 +102,13 @@ class NeighborhoodController extends Controller
     {
         // $neighborhood= Neighborhood::whereId($id)->first();
         // $neighborhood->delete();
+
+        $properties = Property::where('neighborhood_id',$id)->get();
+          foreach($properties as $property)
+          {
+            $property->delete();
+          }
+
         Neighborhood::findOrFail($id)->delete();
         return redirect()->back();
     }

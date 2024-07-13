@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Owner;
+use App\Models\Property;
 use App\Http\Requests\CreateOwnerRequest;
 use App\Http\Requests\UpdateOwnerRequest;
 use Illuminate\Support\Facades\File; 
@@ -131,6 +132,12 @@ class OwnerController extends Controller
         // $owner=Owner::whereId($id)->first();
         // $owner->clearMediaCollection('owner_image');
         // $owner->delete();
+
+        $properties = Property::where('owner_id',$id)->get();
+        foreach($properties as $property)
+        {
+          $property->delete();
+        }
 
         $owner=Owner::whereId($id)->first();
         $oldImageName =$owner->owner_image;
