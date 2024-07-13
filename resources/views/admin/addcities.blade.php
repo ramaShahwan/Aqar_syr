@@ -11,7 +11,12 @@
  @csrf
 	<div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">الاسم</label>
-        <input type="text" name="name"  class="form-control" style="background-color: white; color:black; text-align: end;" >
+        <input type="text" name="name"  class="form-control @error('name') is-invalid @enderror" style="background-color: white; color:black; text-align: end;" >
+        @error('name')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
      </div>
 
 
@@ -20,7 +25,12 @@
                             <label for="city_image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
 
                             <div class="col-md-6">
-                            <input id="city_image" type="file" class="form-control " name="city_image" required style="background-color: white; margin-left: 120px;" >
+                            <input id="city_image" type="file" class="form-control @error('city_image') is-invalid @enderror" name="city_image"  style="background-color: white; margin-left: 120px;" >
+                            @error('city_image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 
 
                             </div>

@@ -23,8 +23,12 @@
 
                             <div class="col-md-6">
                                 <img src="{{URL::asset('/img/owner/'.$data->owner_image)}}" width="200px" style="margin-left: 120px;">
-                                <input id="owner_image" type="file" class="form-control " name="owner_image" required style="background-color: white; margin-left: 120px;" >
-
+                                <input id="owner_image" type="file" class="form-control @error('owner_image') is-invalid @enderror" name="owner_image" required style="background-color: white; margin-left: 120px;" >
+                                @error('owner_image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 
                             </div>
                         </div>

@@ -66,7 +66,7 @@ class PropertyController extends Controller
            'room' => 'nullable|integer|min:0',
            'bathroom'=>'nullable|integer|min:0',
           'space' => 'nullable|min:0',
-       //  'neighborhood_id' => 'required',
+          'neighborhood_id' => 'required',
          'owner_id' => 'required',
           ]);
         // $validated = $request->validated();
@@ -255,6 +255,18 @@ class PropertyController extends Controller
         // $property=Property::whereId($id)->first();
         // $property->clearMediaCollection('property_image');
         // $property->delete();
+
+        $property=Property::whereId($id)->first();
+        $oldImageName =$property->estate_image;
+        if ($oldImageName) {
+            File::delete(public_path('img/estate/') . $oldImageName);
+           }
+
+           $oldVideoName =$property->estate_video;
+           if ($oldVideoName) {
+               File::delete(public_path('img/estate/') . $oldVideoName);
+            }
+
         Property::findOrFail($id)->delete();
         return redirect()->back();
     }

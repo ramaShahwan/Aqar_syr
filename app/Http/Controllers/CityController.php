@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\City;
 use App\Http\Requests\CreateCityRequest;
 use App\Http\Requests\UpdateCityRequest;
+use App\Models\Region;
+use App\Models\Neighborhood;
 use Illuminate\Support\Facades\File; 
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -130,7 +132,23 @@ class CityController extends Controller
    
     public function destroy($id)
     {
+
+      $regions = Region::where('city_id',$id)->get();
+      foreach($regions as $region)
+      {
+       $region->delete();
+      }
+
+      $neighborhoods = Neighborhood::where('region_id',$id)->get();
+
+
      
+
+       $city=City::whereId($id)->first();
+        $oldImageName =$city->city_image;
+        if ($oldImageName) {
+            File::delete(public_path('img/city/') . $oldImageName);
+           }
        City::findOrFail($id)->delete();
         return redirect()->back();
     }

@@ -237,17 +237,30 @@ font-family: "Cairo", sans-serif;
 							<div class="row">
 								<!-- Name -->
 								<div class="col-lg-6 contact_name_col">
-                                <input type="email" class="contact_input tt" name="email"  style="text-align: end;padding:20px; background:#ffff; border: 2px solid black;" placeholder="البريد الالكتروني" required="required">
-
+                                <input type="email" class="contact_input tt @error('email') is-invalid @enderror" name="email"  style="text-align: end;padding:20px; background:#ffff; border: 2px solid black;" placeholder="البريد الالكتروني" required="required">
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 								</div>
 								<!-- Email -->
 								<div class="col-lg-6">
-                                <input type="text" class="contact_input tt" name="name" style="text-align: end; padding:20px;background:#ffff; border: 2px solid black;" placeholder="الاسم" required="required">
-
+                                <input type="text" class="contact_input tt @error('name') is-invalid @enderror" name="name" style="text-align: end; padding:20px;background:#ffff; border: 2px solid black;" placeholder="الاسم" required="required">
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 								</div>
 							</div>
 
-							<div><textarea class="contact_textarea contact_input tt" name="message"  style="text-align: end;padding:20px;background:#ffff; border: 2px solid black;" placeholder="الرسالة" required="required"></textarea></div>
+							<div><textarea class="contact_textarea contact_input tt @error('message') is-invalid @enderror" name="message"  style="text-align: end;padding:20px;background:#ffff; border: 2px solid black;" placeholder="الرسالة" required="required"></textarea>
+                                @error('message')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror</div>
                             <button class="contact_button button ttt" style="font-size: 17px;background:#d1d1d1;width:90px;height:50px;color: #0c3c6d;">إرسال</button>						</form>
 					</div>
 				</div>

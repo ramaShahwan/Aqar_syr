@@ -11,11 +11,16 @@
  @csrf
 	<div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">الاسم</label>
-        <input type="text" name="name"  class="form-control" style="background-color: white; color:black; text-align: end;" >
+        <input type="text" name="name"  class="form-control @error('name') is-invalid @enderror" style="background-color: white; color:black; text-align: end;" >
+        @error('name')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
      </div>
      <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">المنطقة</label>
-        <select class="form-select" name="region_id" id="region_id" aria-label="Default select example" style="background-color: white; color:black; text-align: end;width: 450px;height: 35px;
+        <select class="form-select @error('region_id') is-invalid @enderror" name="region_id" id="region_id" aria-label="Default select example" style="background-color: white; color:black; text-align: end;width: 450px;height: 35px;
     border-color: #ddd7d7;font-size: 20px;" >
         <option selected></option>
 
@@ -28,6 +33,11 @@
 
 
 </select>
+@error('region_id')
+<span class="invalid-feedback" role="alert">
+    <strong>{{ $message }}</strong>
+</span>
+@enderror
      </div>
 
 

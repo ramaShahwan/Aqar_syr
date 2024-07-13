@@ -35,7 +35,7 @@ class OwnerController extends Controller
             $newImage = $request->file('owner_image');
             //for change image name
             $newImageName = 'image_' .  $owner->id . '.' . $newImage->getClientOriginalExtension();
-            $newImage->move(public_path('img/ownr/'), $newImageName);
+            $newImage->move(public_path('img/owner/'), $newImageName);
             $owner->owner_image = $newImageName;
             $owner->update();
          }
@@ -131,7 +131,13 @@ class OwnerController extends Controller
         // $owner=Owner::whereId($id)->first();
         // $owner->clearMediaCollection('owner_image');
         // $owner->delete();
-        Owner::findOrFail($id)->delete();
+
+        $owner=Owner::whereId($id)->first();
+        $oldImageName =$owner->owner_image;
+        if ($oldImageName) {
+            File::delete(public_path('img/owner/') . $oldImageName);
+           }
+           Owner::findOrFail($id)->delete();
         return redirect()->back();
     }
 }

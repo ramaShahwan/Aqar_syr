@@ -15,7 +15,12 @@
 
 	<div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">الاسم</label>
-        <input type="text" name="name"  class="form-control" style="background-color: white; color:black; text-align: end;" value="{{$data-> name}}">
+        <input type="text" name="name"  class="form-control @error('name') is-invalid @enderror" style="background-color: white; color:black; text-align: end;" value="{{$data-> name}}">
+        @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
      </div>
 
 
@@ -23,7 +28,7 @@
 
      <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">المنطقة</label>
-        <select class="form-select" name="region_id" id="region_id" aria-label="Default select example" style="background-color: white; color:black; text-align: end; width: 450px;
+        <select class="form-select @error('region_id') is-invalid @enderror" name="region_id" id="region_id" aria-label="Default select example" style="background-color: white; color:black; text-align: end; width: 450px;
     height: 30px;
     border-color: #c3c8cd;" value="">
         <option selected></option>
@@ -37,6 +42,11 @@
 
 
 </select>
+@error('region_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
      </div>
 
 	<button type="submit" class="btn btn-sm btn-primary" style=" background-color:#406a98;margin-left: 20%; margin-bottom: 20px; font-size: 20px;">تعديل المدينة</button>
