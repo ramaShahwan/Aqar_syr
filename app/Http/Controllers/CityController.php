@@ -109,10 +109,12 @@ class CityController extends Controller
 
     public function all_cities(Request $request)
     {
-        $search = $request->search;;
-        $cities =  City::where('name', 'like', '%'.$search.'%')->orderBy('name', 'Asc')->select('name','city_image')->get();
+      $cities = City::all();
+
 
         // $search=$request->search;
+        // $cities =  City::where('name', 'like', '%'.$search.'%')->orderBy('name', 'Asc')->select('name','city_image')->get();
+
         // $cities=City::when($search, function ($query, $search)
         // {$query->where('name','like','%'.$search.'%');
         // })->get();
@@ -128,8 +130,7 @@ class CityController extends Controller
    
     public function destroy($id)
     {
-        // $city=City::whereId($id)->first();
-        // $city->clearMediaCollection('city_image');
+     
        City::findOrFail($id)->delete();
         return redirect()->back();
     }

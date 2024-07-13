@@ -173,7 +173,7 @@ font-family: "Cairo", sans-serif;
                     {{-- <div class="city_title" style="    margin-top: 10px;color: #203e60; text-align: center; margin-left: 30px;margin-right: -13px;">{{$call->name}}</div> --> --}}
 
 					<div class="city" style="    border-radius: 50px;">
-							{{-- <a href="{{url('property/get_by_city',$call->name)}}" > --}}
+							<a href="{{url('property/get_by_city',$call->name)}}" >
                                 <img class="img image"src="{{URL::asset('/img/city/'.$call->city_image)}}" style="">
                     <div class="city_title" style='   margin-top: 10px;color: #203e60; text-align: center; margin-left: 30px;margin-right: -13px;font-family: "Cairo", sans-serif;
   font-optical-sizing: auto;
