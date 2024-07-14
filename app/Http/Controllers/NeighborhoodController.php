@@ -6,6 +6,7 @@ use App\Models\Neighborhood;
 use Illuminate\Http\Request;
 use App\Models\Region;
 use App\Models\Property;
+use Illuminate\Support\Facades\File; 
 
 
 class NeighborhoodController extends Controller
@@ -106,6 +107,14 @@ class NeighborhoodController extends Controller
         $properties = Property::where('neighborhood_id',$id)->get();
           foreach($properties as $property)
           {
+            $oldImageEstateName =$property->estate_image;
+            $oldVideoEstateName =$property->estate_video;
+            if ($oldImageEstateName) {
+              File::delete(public_path('img/estate/') . $oldImageEstateName);
+             }
+             if ($oldVideoEstateName) {
+              File::delete(public_path('img/estate/') . $oldVideoEstateName);
+             }
             $property->delete();
           }
 

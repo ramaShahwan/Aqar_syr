@@ -10,7 +10,7 @@ use App\Http\Requests\UpdateCityRequest;
 use App\Models\Region;
 use App\Models\Neighborhood;
 use App\Models\Property;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;  
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CityController extends Controller
@@ -143,11 +143,18 @@ class CityController extends Controller
         $properties = Property::where('neighborhood_id',$neighborhood->id)->get();
           foreach($properties as $property)
           {
+            $oldImageEstateName =$property->estate_image;
+            $oldVideoEstateName =$property->estate_video;
+            if ($oldImageEstateName) {
+              File::delete(public_path('img/estate/') . $oldImageEstateName);
+             }
+             if ($oldVideoEstateName) {
+              File::delete(public_path('img/estate/') . $oldVideoEstateName);
+             }
             $property->delete();
           }
           $neighborhood->delete();
         }
-
        $region->delete();
       }
 

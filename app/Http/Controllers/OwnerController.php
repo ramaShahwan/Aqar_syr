@@ -136,6 +136,14 @@ class OwnerController extends Controller
         $properties = Property::where('owner_id',$id)->get();
         foreach($properties as $property)
         {
+        $oldImageEstateName =$property->estate_image;
+          $oldVideoEstateName =$property->estate_video;
+          if ($oldImageEstateName) {
+            File::delete(public_path('img/estate/') . $oldImageEstateName);
+           }
+           if ($oldVideoEstateName) {
+            File::delete(public_path('img/estate/') . $oldVideoEstateName);
+           }
           $property->delete();
         }
 
