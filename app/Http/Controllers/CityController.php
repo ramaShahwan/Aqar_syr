@@ -74,7 +74,7 @@ class CityController extends Controller
     public function update(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:cities',
+            'name' => 'required',
             'city_image' => 'required',
           ]);
 

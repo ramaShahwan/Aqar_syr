@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="icon" href="{{asset('images/Artboard 1.png')}}" type="image/x-icon" />
+        <link rel="icon" href="{{asset('images/Untitled-4.png')}}" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>المحترف لتطوير وتسويق العقار </title>
 

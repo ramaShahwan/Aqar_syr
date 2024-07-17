@@ -116,7 +116,7 @@ background-attachment: fixed;
                                 <li>
 									<!-- <div style="text-align: end;font-size: 20px;    color: #172170;">العنوان</div> -->
                                     <div style="margin-left: -30px;"> <h5 class="ttt" style="color: #203e60;font-size: 14px;
-    text-align: start;    "> <i class="fa-solid fa-location-dot iii" style="margin-right: 15px;color: #203e60;"></i>حلب - المحاقظة - شارع الهندسة      </h5>
+    text-align: start;    "> <i class="fa-solid fa-location-dot iii" style="margin-right: 15px;color: #203e60;"></i>حلب - المحافظة - شارع الهندسة      </h5>
     <h5 class="ttt" style="color: #203e60;font-size: 14px;text-align: start;     margin-left: 20px;   "> بعد مفرق مديرية التعاون السكني</h5>
     <h5 class="ttt" style="color: #203e60;font-size: 14px;text-align: start;     margin-left: 20px;   "> <a href="https://www.google.com/maps/place/%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81+%D9%84%D9%84%D9%87%D9%86%D8%AF%D8%B3%D8%A9+%D9%88%D8%A7%D9%84%D8%A8%D9%86%D8%A7%D8%A1%E2%80%AD/@36.2068136,37.1333305,17z/data=!3m1!4b1!4m6!3m5!1s0x152ff9b114a1c0bd:0xc1a3980f7bb30d7c!8m2!3d36.2068093!4d37.1359054!16s%2Fg%2F11v66ggnb5?entry=ttu" style="color: #09100e; font-weight: 1000;">اضغط هنا لاستعراض الموقع  </a>    </h5>
     <!-- <span style="color:black;">_____________________________</span> -->
@@ -175,7 +175,7 @@ background-attachment: fixed;
 
 </div>
 <div class="citie" >
-	<div ><img src="images/IMG-20240519-WA0005.jpg" alt="" style="width: 640px;height: 400px; margin-bottom: 20px;
+	<div ><img src="images/Untitled-6.png" alt="" style="width: 640px;height: 400px; margin-bottom: 20px;
     margin-left: 330px;border: 40px black;outline-width: 10px;
     outline-color: #a89393b5;
     outline-style: double;"></div>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>المحترف للتسويق العقاري </title>
+  	<title>المحترف لتطوير وتسويق العقار </title>
       <link rel="icon" href="{{asset('images/ph.png')}}" type="image/x-icon" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -61,7 +61,8 @@
 	        </button> -->
         </div>
         <div class=""     style="background: linear-gradient(to bottom, #cfd3d7, #d6e0eb); ">
-        <div style="margin-left: 15px;    padding-top: 30px;"><h1 class="tt" style="font-size: 23px;">المحترف للتسويق العقاري </h1></div>
+        <div style="margin-left: 15px;    padding-top: 30px;"><h1 class="tt" style="    font-size: 20px;
+    text-align: center;">المحترف لتطوير وتسويق العقار  </h1></div>
 
 	        <ul class="list-unstyled components ">
             <li>

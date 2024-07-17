@@ -4,7 +4,7 @@
 <head id="head">
     <meta charset="utf-8">
     <title>المحترف لتطوير وتسويق العقار </title>
-    <link rel="icon" href="{{asset('images/Artboard 1.png')}}" type="image/x-icon" />
+    <link rel="icon" href="{{asset('images/Untitled-4.png')}}" type="image/x-icon" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">

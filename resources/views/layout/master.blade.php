@@ -8,7 +8,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>المحترف لتطوير وتسويق العقار </title>
 
-        <link rel="icon" href="{{asset('images/Artboard 1.png')}}" type="image/x-icon" />
+        <link rel="icon" href="{{asset('images/Untitled-4.png')}}" type="image/x-icon" />
 
         <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap4/bootstrap.min.css')}}">
         <link href="{{asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">

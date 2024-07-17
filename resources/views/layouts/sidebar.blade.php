@@ -5,7 +5,7 @@
             <nav class="navbar bg-light navbar-light">
                 <a href="#" class="navbar-brand mx-4 mb-3">
                     <h3  style="margin-left: 50px;
-    color: #604191;"> المحترف لتسويق العقارات <i class="fa fa-hashtag me-2"></i></h3>
+    color: #604191;"> المحترف لتطوير وتسويق العقار  <i class="fa fa-hashtag me-2"></i></h3>
                 </a>
 
                 <div class="navbar-nav w-100">

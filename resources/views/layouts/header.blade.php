@@ -75,8 +75,8 @@ display: inline-block;
 				<div class="col">
 					<div class="header_content d-flex flex-row align-items-center justify-content-start" style="margin-left: 100px;">
                     <div class="logo">
-					<a href="#"><img src="{{asset('images/Artboard 1.png')}}" alt="" style="margin-left: -140px; height: 100px;"></a>
-                            <a href="#"><img src="{{asset('images/Untitled-1.png')}}" alt="" style=" height: 100px;margin-top: 20px;"></a>
+					<a href="#"><img src="{{asset('images/Untitled-4.png')}}" alt="" style="margin-left: -140px; height: 90px;"></a>
+                            <!-- <a href="#"><img src="{{asset('images/Untitled-1.png')}}" alt="" style=" height: 100px;margin-top: 20px;"></a> -->
 
 						</div>
 

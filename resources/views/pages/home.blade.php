@@ -189,7 +189,7 @@ font-family: "Cairo", sans-serif;
 			@endforeach
 		</div>
 		<!-- <div class="cities_container d-flex flex-row flex-wrap align-items-start justify-content-between">
-		
+
 		</div> -->
 </div>
 <div class="contact"style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/property_6.jpg);width: 100%;background-size: cover;background-position: center center;">
@@ -218,7 +218,7 @@ font-family: "Cairo", sans-serif;
                                 <li>
 									<!-- <div style="text-align: end;font-size: 20px;    color: #172170;">العنوان</div> -->
                                     <div style="margin-left: -30px;"> <h5 class="ttt" style="color: white;font-size: 14px;
-    text-align: start;    "> <i class="fa-solid fa-location-dot iii" style="margin-right: 15px;color: white"></i>حلب - المحاقظة - شارع الهندسة      </h5>
+    text-align: start;    "> <i class="fa-solid fa-location-dot iii" style="margin-right: 15px;color: white"></i>حلب - المحافظة - شارع الهندسة      </h5>
     <h5 class="ttt" style="color: white;font-size: 14px;text-align: start;     margin-left: 20px;   "> بعد مفرق مديرية التعاون السكني</h5>
     <h5 class="ttt" style="color: white;font-size: 14px;text-align: start;     margin-left: 20px;   "> <a href="https://www.google.com/maps/place/%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81+%D9%84%D9%84%D9%87%D9%86%D8%AF%D8%B3%D8%A9+%D9%88%D8%A7%D9%84%D8%A8%D9%86%D8%A7%D8%A1%E2%80%AD/@36.2068136,37.1333305,17z/data=!3m1!4b1!4m6!3m5!1s0x152ff9b114a1c0bd:0xc1a3980f7bb30d7c!8m2!3d36.2068093!4d37.1359054!16s%2Fg%2F11v66ggnb5?entry=ttu" style="color: wheat;">اضغط هنا لاستعراض الموقع </a>    </h5>
 </div>

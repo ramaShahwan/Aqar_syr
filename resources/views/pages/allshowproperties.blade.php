@@ -23,17 +23,135 @@ background-size: cover;
 background-attachment: fixed;
 
     }
+    .divall{
+        width: 1050px;
+         /* margin-left: -90px; */
+         margin-right: 50px;
+    margin-left: auto;
+    margin-top: 55px;
+
+    }
+    .all{
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row-reverse;
+        align-items: stretch;
+
+    }
+    .ptt{
+
+    }
+    .imag{
+        width: 1050px;
+        height:400px;
+    }
+    .tttt{
+        width: 500px;
+    }
+    .cont{
+       margin-left: 120px;
+    }
+    @media screen and (max-width: 770px ){
+
+        .divall{
+            width: 358px;
+
+        }
+
+        .all{
+            display: block;
+        }
+        .imag{
+            width: 358px;
+        height:330px;
+
+        }
+       .tttt{
+        width: auto;
+       }
+       .cont{
+       margin-left: 0px;
+    }
+    }
+    @media screen and (max-width: 398px ){
+        .divall{
+            width: 358px;
+
+        }
+
+        .all{
+            display: block;
+        }
+        .imag{
+            width: 358px;
+        height:330px;
+
+        }
+        .tttt{
+        width: auto;
+       }
+       .cont{
+       margin-left: 0px;
+    }
+
+    }
+    @media screen and (max-width: 846px ){
+        .divall{
+            width: 358px;
+            margin-left: 0;
+        margin-right: 0;
+
+        }
+        .all{
+            display: block;
+        }
+        .tttt{
+        width: auto;
+       }
+       .imag{
+            width: 358px;
+        height:330px;
+
+        }
+        .cont{
+       margin-left: 0px;
+    }
+    }
+    @media screen and (max-width: 1145px){
+        .divall{
+            width: 358px;
+            margin-left: 0;
+        margin-right: 0;
+
+        }
+        .all{
+            display: block;
+            margin-left: 0;
+        margin-right: 0;
+        }
+        .tttt{
+        width: auto;
+       }
+       .imag{
+            width: 358px;
+        height:330px;
+
+        }
+        .cont{
+       margin-left: 150px;
+    }
+    }
 </style>
 
-<div class="container-xxl position-relative  d-flex p-0  ">
+<div class="container-xxl position-relative  d-flex p-0 citie ">
 
    <!-- Recent Sales Start -->
-   <div style="padding-top: 100px; overflow-y: scroll; height:810px;" class="citie">
-   <div class="container-fluid pt-4 px-4" style="margin-left: 60px;">
+   <div  class="">
+   <div class="pt-4 px-4 cont">
 
 
-   <div class="properties  ">
-		<div class="container" style="width: 1050px; margin-left: -90px; margin-right: 50px;">
+   <div class="properties  " style="padding-bottom: 0px;">
+		<div class=" divall" >
 
 			<div class="" style="margin-top: -80px; ">
 
@@ -42,18 +160,16 @@ background-attachment: fixed;
 				<div class=" property_col">
 					<div class="property">
 						<div class="property_image">
-							<img src="{{URL::asset('/img/estate/'.$property->estate_image)}}" alt="" style=" width: 1050px; height:400px;">
+							<img  src="{{URL::asset('/img/estate/'.$property->estate_image)}}" alt=""  class="imag">
+
 						</div>
-						<div class="property_body text-center" style="display: flex;
-                                  justify-content: space-evenly;
-                                   flex-direction: row-reverse;
-                                    align-items: stretch;">
+						<div class="property_body text-center all" style="">
                             <div style="    text-align: end; margin-right: 20px;">
                             <div class="property_location"><h3 class="tt"><span style="color: #342e2e;">الإسم :</span>   {{$property->name}} </h3></div>
 							<div class="property_title"><h3 class="tt"><span style="color: #342e2e;">النوع :</span>  {{$property->type}}</h3></div>
                             <div class="property_location"><h3 class="tt"><span style="color: #342e2e;">الغاية :</span>  {{$property->purpose}}</h3></div>
 
-                            <div class="property_location"><h3 class="tt" style="width: 500px;"><span style="color: #342e2e;">الوصف :</span> {{$property->description}}</h3></div>
+                            <div class="property_location"><h3 class="tt tttt" style=""><span style="color: #342e2e;">الوصف :</span> {{$property->description}}</h3></div>
                             @if(  $property->type == 'أرض')
                             <div class="property_location"><h3 class="tt"><span style="color: #342e2e;">سعر المتر :</span> {{$property->meter_price}}</h3></div>
                             @endif
@@ -90,7 +206,7 @@ background-attachment: fixed;
                         <div class="property_image">
 
 
-                            <video src="{{URL::asset('/img/estate/'.$property->estate_video)}}"   style=" width: 1050px; height:300px;"  controls muted></video>
+                            <video src="{{URL::asset('/img/estate/'.$property->estate_video)}}"    class="imag"  controls muted></video>
 
 						</div>
 
@@ -117,7 +233,7 @@ background-attachment: fixed;
 </div>
             <!-- Recent Sales End -->
 </div>
-<div >@include('layout.sideber')</div>
+
 
 </div>
 

@@ -83,12 +83,12 @@ background-attachment: fixed;
 							<p style='color: black; font-size: 20px;text-align: end;font-family: "El Messiri", sans-serif;
   font-optical-sizing: auto;
   font-weight:400;
-  font-style: normal;'> نحن موقع متخصص في تقديم خدمات عقارية متكاملة، نقدم خدمات شراء وبيع العقارات، إدارة الأملاك، تأجير الوحدات السكنية والتجارية، تقييم العقارات، وتقديم استشارات عقارية، يتألف فريقنا من محترفين متخصصين في مجال العقارات، يعملون على تحقيق أهداف عملائنا وتلبية احتياجاتهم بشكل  وسيتم الفحص الابنية المعروضة لدينا بالتعاوون مع شركة</p>
+  font-style: normal;'> نحن موقع متخصص في تقديم خدمات عقارية متكاملة، نقدم خدمات شراء وبيع العقارات، إدارة الأملاك، تأجير الوحدات السكنية والتجارية، تقييم العقارات، وتقديم استشارات عقارية، يتألف فريقنا من محترفين متخصصين في مجال العقارات، يعملون على تحقيق أهداف عملائنا وتلبية احتياجاتهم وسيتم الفحص الابنية المعروضة لدينا بالتعاوون مع شركة</p>
   <p style='color: black; font-size: 20px;text-align: center;font-family: "El Messiri", sans-serif;
   font-optical-sizing: auto;
   font-weight:400;
   font-style: normal;margin-top: -50px;
-    margin-left: 90px;'>Building Rank</p>
+    margin-left: 250px;'>Building Rank</p>
 						</div>
 					</div>
 				</div>
