@@ -3,11 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CityController;
 use App\Http\Controllers\Api\CityAPIController;
-
-use App\Http\Controllers\OwnerController;
-use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\Api\ContactAPIController;
+use App\Http\Controllers\Api\PropertyAPIController;
 
 
 
@@ -26,6 +24,14 @@ use App\Http\Controllers\PropertyController;
 // for city
 Route::get('/all_cities', [CityAPIController::class, 'index']);
    
+// for contact
+Route::post('/store_contact', [ContactAPIController::class, 'store']);
+
+// for property
+Route::get('/show_property/{id}', [PropertyAPIController::class, 'show']);
+Route::get('/all_cities/{cityName}', [PropertyAPIController::class, 'get_by_city']);
+Route::get('get_by_city_type/{type}/{cityName}/{purpose}', [PropertyAPIController::class, 'get_by_city_type']);
+Route::get('/search', [PropertyAPIController::class, 'search']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -43,26 +49,3 @@ Route::prefix('auth')->controller(AuthController::class)->group(function(){
     Route::post('login', 'login');
 
 });
-Route::prefix('city')->controller(CityController::class)->group(function(){
-    Route::post('create', 'store');
-    Route::post('update', 'edit');
-    Route::get('get', 'index');
-    Route::get('show/{id}', 'show');
-    Route::get('delete/{id}', 'destroy');
-});
-Route::prefix('owner')->controller(OwnerController::class)->group(function(){
-    Route::post('create', 'store');
-    Route::post('update', 'edit');
-    Route::get('get', 'index');
-    Route::get('show/{id}', 'show');
-    Route::get('delete/{id}', 'destroy');
-});
-Route::prefix('property')->controller(PropertyController::class)->group(function(){
-    Route::post('create', 'store');
-    Route::post('update', 'edit');
-    Route::get('get', 'index');
-    Route::get('show/{id}', 'show');
-    Route::get('delete/{id}', 'destroy');
-});
-
-
