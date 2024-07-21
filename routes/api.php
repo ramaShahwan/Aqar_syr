@@ -29,7 +29,7 @@ Route::post('/store_contact', [ContactAPIController::class, 'store']);
 
 // for property
 Route::get('/show_property/{id}', [PropertyAPIController::class, 'show']);
-Route::get('/all_cities/{cityName}', [PropertyAPIController::class, 'get_by_city']);
+Route::get('/get_by_city/{cityName}', [PropertyAPIController::class, 'get_by_city']);
 Route::get('get_by_city_type/{type}/{cityName}/{purpose}', [PropertyAPIController::class, 'get_by_city_type']);
 Route::get('/search', [PropertyAPIController::class, 'search']);
 
