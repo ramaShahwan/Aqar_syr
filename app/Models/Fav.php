@@ -7,17 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
-use App\Models\Property;
 
-class Owner extends Model
-// class Owner extends Model implements HasMedia
+class Fav extends Model
 {
-    use HasFactory;
-    // use HasFactory,SoftDeletes,InteractsWithMedia;
-    // protected $dates = ['deleted_at']; 
     protected $guarded=[];
+    protected $table = 'favs';
+
     public function properties()
     {
-        return $this->hasMany(Property::class);
+        return $this->belongsTo(Property::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
     }
 }

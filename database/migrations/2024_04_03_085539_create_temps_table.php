@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('properties', function (Blueprint $table) {
-        // $table->softDeletes();
-        $table->id();
-        // $table->string('name')->nullable();
-        $table->string('type')->nullable();
+        Schema::create('temps', function (Blueprint $table) {
+            $table->id();
+            $table->string('type')->nullable();
         $table->string('purpose')->nullable();
         $table->integer('room')->nullable();
         $table->integer('bathroom')->nullable();
@@ -26,15 +24,16 @@ return new class extends Migration
         $table->string('license')->nullable();
         $table->string('floor')->nullable();
         $table->string('description')->nullable();
-        $table->integer('number_show')->nullable();
         $table->string('meter_price')->nullable();
         $table->string('street_width')->nullable();
         $table->string('location')->nullable();
         $table->string('features')->nullable();
         $table->string('estate_image')->nullable();
         $table->string('estate_video')->nullable();
+        $table->string('detaills_address')->nullable();
+        $table->string('note')->nullable();
+        $table->string('reason')->nullable();
         $table->integer('building_rank')->nullable();
-
         $table->foreignId('neighborhood_id')->constrained()->cascadeOnDelete()->nullable();
         $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
         $table->timestamps();
@@ -46,6 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('properties');
+        Schema::dropIfExists('owners');
     }
 };

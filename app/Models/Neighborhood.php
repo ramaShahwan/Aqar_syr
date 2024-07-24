@@ -12,15 +12,26 @@ use App\Models\Property;
 
 class Neighborhood extends Model
 {
-    protected $fillable = [
-        'name', 'region_id'
-    ];
+    // protected $fillable = [
+    //     'name', 'region_id'
+    // ];
+    protected $table = 'neighborhoods';
 
     // use HasFactory,SoftDeletes;
     // protected $dates = ['deleted_at'];
     protected $guarded=[];
-    public function region(){
+
+    public function region()
+    {
         return $this->belongsTo(Region::class);
+    }
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
+    public function temps()
+    {
+        return $this->hasMany(Temp::class);
     }
 
 }

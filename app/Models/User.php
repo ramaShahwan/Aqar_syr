@@ -20,8 +20,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'phone',
         'email',
         'password',
+        'role',
+
     ];
 
     /**
@@ -43,4 +46,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
+
+    public function favs()
+    {
+        return $this->hasMany(Fav::class);
+    }
+
+    public function temps()
+    {
+        return $this->hasMany(TEmp::class);
+    }
 }

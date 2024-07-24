@@ -20,9 +20,9 @@ class City extends Model
     protected $table = 'cities';
     // protected $dates = ['deleted_at'];
     protected $guarded=[];
-    public function properties()
+    public function regions()
     {
-        return $this->hasMany(Property::class);
+        return $this->hasMany(Region::class);
     }
  
 }

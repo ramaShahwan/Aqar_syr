@@ -16,11 +16,14 @@ class Region extends Model
     // use HasFactory,SoftDeletes;
     // protected $dates = ['deleted_at'];
     protected $guarded=[];
+    protected $table = 'regions';
+
     public function city(){
         return $this->belongsTo(City::class);
     }
-    // public function neighborhoods()
-    // {
-    //     return $this->hasMany(Neighborhood::class);
-    // }
+
+    public function neighborhoods()
+    {
+        return $this->hasMany(Neighborhood::class);
+    }
 }

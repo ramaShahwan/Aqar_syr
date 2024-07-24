@@ -11,12 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('re_agents', function (Blueprint $table) {
             // $table->softDeletes();
             $table->id();
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
-            $table->string('message')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('mobile')->unique()->nullable();
+            $table->string('address')->nullable();
+            $table->string('image')->nullable();
+            // $table->foreignId('neighborhood_id')->constrained()->cascadeOnDelete()->nullable();
+            //?????????
+            // $table->foreignId('region_id')->constrained()->cascadeOnDelete()->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('owners');
     }
 };
