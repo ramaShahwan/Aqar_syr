@@ -34,7 +34,7 @@ return new class extends Migration
         $table->string('estate_image')->nullable();
         $table->string('estate_video')->nullable();
         $table->integer('building_rank')->nullable();
-        $table->string('status')->nullable();
+        $table->string('status_')->nullable();
         $table->foreignId('neighborhood_id')->constrained()->cascadeOnDelete()->nullable();
         $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
         $table->timestamps();

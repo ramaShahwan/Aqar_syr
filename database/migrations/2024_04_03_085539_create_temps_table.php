@@ -32,7 +32,7 @@ return new class extends Migration
         $table->string('estate_video')->nullable();
         $table->string('detaills_address')->nullable();
         $table->string('note')->nullable();
-        $table->string('status')->nullable();
+        $table->string('status_')->nullable();
         $table->string('reason')->nullable();
         $table->integer('building_rank')->nullable();
         $table->foreignId('neighborhood_id')->constrained()->cascadeOnDelete()->nullable();
