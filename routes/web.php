@@ -1,14 +1,17 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CityController;
 use App\Http\Controllers\OwnerController;
-use App\Http\Controllers\NeighborhoodController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\PropertyController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NeighborhoodController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,15 +24,20 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::get('/', function () {
-//     return view('pages.home');
-// });
 Route::get('/', function () {
-    return view('pages.home');
+    return view('welcome');
 });
-// Route::get('/home', function () {
-//     return view('pages.home');
-// })-> name('home');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
 Route::get('/about', function () {
     return view('pages.about');
 })-> name('about');
@@ -39,9 +47,9 @@ Route::get('/contact', function () {
 Route::get('/login', function () {
     return view('pages.login');
 })-> name('login');
-// Route::get('/register', function () {
-//     return view('pages.register');
-// })-> name('register');
+Route::get('/register', function () {
+    return view('pages.register');
+})-> name('register');
 Route::get('/flat', function () {
     return view('pages.flat');
 })-> name('flat');
@@ -82,12 +90,13 @@ Route::get('/addneighborhoods', function () {
     return view('admin.addneighborhoods');
 })-> name('addneighborhoods');
 
-Route::get('/',[CityController::class,'index']);
-Route::get('/home',[CityController::class,'index'])-> name('home');
 
 
 Route::get('/cities',[CityController::class,'all_cities'])-> name('cities');
 
+Route::get('/',[CityController::class,'index']);
+
+Route::get('/home',[CityController::class,'index'])-> name('home');
 // Route::post('/store', [OwnerController::class, 'store'])->name('store');
 // Route::get('/edit/{owner_id}',[OwnerController::class,'edit'])->name('edit');
 // Route::post('/update/{id}',[OwnerController::class,'update']);
@@ -107,7 +116,7 @@ Route::prefix('city')->controller(CityController::class)->group(function(){
     Route::get('/cities', 'all_cities');
     Route::get('/show/{id}', 'show');
     Route::get('/destroy/{id}', 'destroy');
-    // Route::post('a', 'register');
+   
 });
 Route::prefix('owner')->controller(OwnerController::class)->group(function(){
     Route::post('/store', 'store');
@@ -117,7 +126,7 @@ Route::prefix('owner')->controller(OwnerController::class)->group(function(){
     Route::get('/owner', 'index');
     Route::get('show/{id}', 'show');
     Route::get('destroy/{id}', 'destroy');
-    // Route::post('a', 'register');
+
 });
 Route::prefix('neighborhood')->controller(NeighborhoodController::class)->group(function(){
     Route::post('/store', 'store');
@@ -181,4 +190,9 @@ Route::prefix('contact')->controller(ContactController::class)->group(function()
     Route::get('destroy/{id}', 'destroy');
 });
 
-
+Route::get('/{any}', function() {
+    return redirect('/');
+  })->where('any', '.*');
+  
+  
+require __DIR__.'/auth.php';

@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('mobile')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('image')->nullable();
-            // $table->foreignId('neighborhood_id')->constrained()->cascadeOnDelete()->nullable();
-            //?????????
-            // $table->foreignId('region_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->foreignId('neighborhood_id')->constrained()->cascadeOnDelete()->nullable();
             $table->timestamps();
         });
     }
