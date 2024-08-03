@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Region;
 use App\Models\Neighborhood;
 use App\Models\Owner;
+use App\Models\User;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\DB;
 class PropertyController extends Controller
@@ -51,7 +52,7 @@ class PropertyController extends Controller
     public function create(Request $request)
     {
         $cities = City::all();
-        $owners = Owner::all();
+        $owners = User::all();
         return view('admin.addproperties')->with(['cities' => $cities,'owners'=> $owners]);
     }
     /**
@@ -153,7 +154,7 @@ class PropertyController extends Controller
         // $cities = City::all();
 
         $data = Property::findOrFail($id);
-        $owners = Owner::all();
+        $owners = User::all();
         // $neighborhoods = Neighborhood::all();
         return view('admin.updateproperties', compact('data','owners'));
     }
@@ -317,13 +318,9 @@ class PropertyController extends Controller
         })
         ->get();
 
-        // $props->transform(function ($prop) {
-        //     $prop->setRelation('image', $prop->media->where('collection_name', 'property_image')->first());
-        //     $prop->unsetRelation('media');
-        //     return $prop;
-        // });
         return view('pages.flat', compact('props'));
     }
+    
     public function search(Request $request)
     {
         $search=$request->search;
