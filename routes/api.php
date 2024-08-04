@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CityAPIController;
 use App\Http\Controllers\Api\ContactAPIController;
 use App\Http\Controllers\Api\PropertyAPIController;
@@ -35,18 +35,31 @@ Route::get('get_by_city_type/{type}/{cityName}/{purpose}', [PropertyAPIControlle
 Route::get('/search', [PropertyAPIController::class, 'search']);
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::group(['middleware'=> ['auth:sanctum']],function(){
-    Route::prefix('auth')->controller(AuthController::class)->group(function(){
-        Route::post('logout', 'logout');
-});
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+// Route::group(['middleware'=> ['auth:sanctum']],function(){
+//     Route::prefix('auth')->controller(AuthController::class)->group(function(){
+//         Route::post('logout', 'logout');
+// });
+// });
 
 
-Route::prefix('auth')->controller(AuthController::class)->group(function(){
-    Route::post('register', 'register');
-    Route::post('login', 'login');
+// Route::prefix('auth')->controller(AuthController::class)->group(function(){
+//     Route::post('register', 'register');
+//     Route::post('login', 'login');
 
+// });
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
