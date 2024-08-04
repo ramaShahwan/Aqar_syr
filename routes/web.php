@@ -2,7 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\NeighborhoodController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Api\AuthController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,7 +102,7 @@ Route::get('/home',[CityController::class,'index'])-> name('home');
 // Route::get('/create',[RegionController::class,'create']);
 // Route::get('/create',[NeighborhoodController::class,'create']);
 // Route::get('/create',[PropertyController::class,'create']);
-Route::get('/owner',[OwnerController::class,'index'])-> name('owner');
+Route::get('/owner',[UserController::class,'index'])-> name('owner');
 Route::get('/regions',[RegionController::class,'index'])-> name('regions');
 Route::get('/properties',[PropertyController::class,'index'])-> name('properties');
 Route::get('/neighborhoods',[NeighborhoodController::class,'index'])-> name('neighborhoods');
@@ -110,16 +117,17 @@ Route::prefix('city')->controller(CityController::class)->group(function(){
     Route::get('/destroy/{id}', 'destroy');
    
 });
-Route::prefix('owner')->controller(OwnerController::class)->group(function(){
-    Route::post('/store', 'store');
-    Route::get('/create', 'create');
-    Route::get('edit/{owner_id}', 'edit');
-    Route::post('update/{id}', 'update');
-    Route::get('/owner', 'index');
-    Route::get('show/{id}', 'show');
-    Route::get('destroy/{id}', 'destroy');
+// Route::prefix('owner')->controller(OwnerController::class)->group(function(){
+//     Route::post('/store', 'store');
+//     Route::get('/create', 'create');
+//     Route::get('edit/{owner_id}', 'edit');
+//     Route::post('update/{id}', 'update');
+//     Route::get('/owner', 'index');
+//     Route::get('show/{id}', 'show');
+//     Route::get('destroy/{id}', 'destroy');
 
-});
+// });
+
 Route::prefix('neighborhood')->controller(NeighborhoodController::class)->group(function(){
     Route::post('/store', 'store');
     Route::get('/create', 'create');
