@@ -17,9 +17,9 @@ use App\Http\Controllers\Api\PropertyAPIController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 // for city
@@ -35,21 +35,7 @@ Route::get('get_by_city_type/{type}/{cityName}/{purpose}', [PropertyAPIControlle
 Route::get('/search', [PropertyAPIController::class, 'search']);
 
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-// Route::group(['middleware'=> ['auth:sanctum']],function(){
-//     Route::prefix('auth')->controller(AuthController::class)->group(function(){
-//         Route::post('logout', 'logout');
-// });
-// });
 
-
-// Route::prefix('auth')->controller(AuthController::class)->group(function(){
-//     Route::post('register', 'register');
-//     Route::post('login', 'login');
-
-// });
 
 
 Route::group([
@@ -62,4 +48,10 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
+});
+
+//send with token
+Route::group(['middleware' => ['jwt.verify']], function() {
+    Route::get('user', 'UserController@getAuthenticatedUser');
+    Route::get('closed', 'DataController@closed');
 });
