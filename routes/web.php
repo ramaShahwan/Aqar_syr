@@ -190,6 +190,12 @@ Route::prefix('contact')->controller(ContactController::class)->group(function()
     Route::get('destroy/{id}', 'destroy');
 });
 
+// Admin Routes
+Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(function () {
+    //for auth&middleware
+});
+
+
 Route::get('/{any}', function() {
     return redirect('/');
   })->where('any', '.*');
