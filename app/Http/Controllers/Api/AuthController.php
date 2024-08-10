@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 // use Validator;
 
 
@@ -27,23 +28,41 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request){
-    	$validator = Validator::make($request->all(), [
-            'phone' => 'required',
-            // 'email' => 'required|email',
-            'password' => 'required|string|min:6',
-        ]);
+    // public function login(Request $request){
+    // 	$validator = Validator::make($request->all(), [
+    //         'phone' => 'required',
+    //         // 'email' => 'required|email',
+    //         'password' => 'required|string|min:6',
+    //     ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+    //     if ($validator->fails()) {
+    //         return response()->json($validator->errors(), 422);
+    //     }
+
+    //     if (! $token = auth()->attempt($validator->validated())) {
+    //         return response()->json(['error' => 'Unauthorized'], 401);
+    //     }
+
+    //     return $this->createNewToken($token);
+    // }
+
+
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('phone', 'password');
+ 
+        try {
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 401);
+            }
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
-        if (! $token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        return $this->createNewToken($token);
+ 
+        return response()->json(compact('token'));
     }
+    
 
     /**
      * Register a User.

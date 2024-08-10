@@ -45,14 +45,20 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
-      'api' => [
+        
+        'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
-            'hash' => false,
         ],
+
+    //   'api' => [
+    //         'driver' => 'jwt',
+    //         'provider' => 'users',
+    //         'hash' => false,
+    //     ],
     ],
 
+  
     /*
     |--------------------------------------------------------------------------
     | User Providers

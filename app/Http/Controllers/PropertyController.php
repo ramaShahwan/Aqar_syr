@@ -61,18 +61,16 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
             'type' => 'required',
             'purpose' => 'required',
            'room' => 'nullable|integer|min:0',
            'bathroom'=>'nullable|integer|min:0',
           'space' => 'nullable|min:0',
           'neighborhood_id' => 'required',
-         'owner_id' => 'required',
+          'user_id' => 'required',
           ]);
         // $validated = $request->validated();
         $property = new Property;
-        $property->name = $request->name;
         $property->type = $request->type;
         $property->purpose = $request->purpose;
         $property->room = $request->room;
@@ -89,9 +87,9 @@ class PropertyController extends Controller
         $property->street_width = $request->street_width;
         $property->location = $request->location;
         $property->features = $request->features;
-
         $property->neighborhood_id = $request->neighborhood_id;
-        $property->owner_id = $request->owner_id;
+        $property->user_id = $request->user_id;
+        $property->building_rank = $request->building_rank;
         $property->save();
 
 
@@ -164,14 +162,13 @@ class PropertyController extends Controller
     public function update(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
             'type' => 'required',
             'purpose' => 'required',
            'room' => 'nullable|integer|min:0',
            'bathroom'=>'nullable|integer|min:0',
           'space' => 'nullable|min:0',
         // 'neighborhood_id' => 'required',
-         'owner_id' => 'required',
+         'user_id' => 'required',
           ]);
         // $validated = $request->validated();
         // $property = Property::whereId($request->id)->first();
@@ -201,7 +198,8 @@ class PropertyController extends Controller
         if($request->neighborhood_id){
             $property->neighborhood_id = $request->neighborhood_id;
         }
-        $property->owner_id = $request->owner_id;
+        $property->user_id = $request->user_id;
+        $property->building_rank = $request->building_rank;
 
         // if($request->image)
         // {

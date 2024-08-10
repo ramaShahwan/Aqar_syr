@@ -7,8 +7,12 @@ use App\Http\Controllers\NeighborhoodController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\TempController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FavController;
 use App\Http\Controllers\Api\AuthController;
+
+
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -117,16 +121,16 @@ Route::prefix('city')->controller(CityController::class)->group(function(){
     Route::get('/destroy/{id}', 'destroy');
    
 });
-// Route::prefix('owner')->controller(OwnerController::class)->group(function(){
-//     Route::post('/store', 'store');
-//     Route::get('/create', 'create');
-//     Route::get('edit/{owner_id}', 'edit');
-//     Route::post('update/{id}', 'update');
-//     Route::get('/owner', 'index');
-//     Route::get('show/{id}', 'show');
-//     Route::get('destroy/{id}', 'destroy');
+Route::prefix('user')->controller(UserController::class)->group(function(){
+    Route::post('/store', 'store');
+    Route::get('/create', 'create');
+    Route::get('edit/{user_id}', 'edit');
+    Route::post('update/{id}', 'update');
+    Route::get('/user', 'index');
+    Route::get('show/{id}', 'show');
+    Route::get('destroy/{id}', 'destroy');
 
-// });
+});
 
 Route::prefix('neighborhood')->controller(NeighborhoodController::class)->group(function(){
     Route::post('/store', 'store');
@@ -152,7 +156,7 @@ Route::prefix('property')->controller(PropertyController::class)->group(function
     Route::get('edit/{id}', 'edit');
     Route::post('update/{id}', 'update');
     Route::get('/properties', 'index');
-    Route::get('show/{id}', 'show');
+    // Route::get('show/{id}', 'show');
     Route::get('destroy/{id}', 'destroy');
     Route::get('regions_for_city', 'regions_for_city');
     Route::get('neighborhoods_for_region', 'neighborhoods_for_region');
@@ -191,8 +195,12 @@ Route::prefix('contact')->controller(ContactController::class)->group(function()
 });
 
 // Admin Routes
-Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(function () {
-    //for auth&middleware
+Route::middleware(['auth', 'verified', 'user'])-> prefix('user')->group(function () {
+    Route::post('storeTempEstate', [TempController::class, 'storeTempEstate'])->name('store_Temp_Estate');
+    Route::get('property/show/{id}', [PropertyController::class, 'show']);
+    Route::get('favourites/{user_id}', [FavController::class, 'getFav']);
+
+
 });
 
 
