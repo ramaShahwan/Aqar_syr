@@ -220,6 +220,24 @@ Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(functi
 });
 
 
+//fatima routes
+Route::get('/myproperties', function () {
+    return view('pages.myproperties');
+})-> name('myproperties');
+Route::get('/pending_requests', function () {
+    return view('admin.pending_requests');
+})-> name('pending_requests');
+Route::get('/requests_accepted', function () {
+    return view('admin.requests_accepted');
+})-> name('requests_accepted');
+Route::get('/requests_rejected', function () {
+    return view('admin.requests_rejected');
+})-> name('requests_rejected');
+Route::get('/allshowpending_requ', function () {
+    return view('admin.allshowpending_requ');
+})-> name('allshowpending_requ');
+
+
 Route::get('/{any}', function() {
     return redirect('/');
   })->where('any', '.*');

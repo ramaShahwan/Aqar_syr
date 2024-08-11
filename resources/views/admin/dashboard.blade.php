@@ -9,7 +9,7 @@
             </div>
             <!-- Recent Sales End -->
 </div>
-<div style="margin-left:900px;">@include('layouts.sidebar')</div>
+<div style="margin-left:900px;">@include('layoutadmin.sidebar')</div>
 
 </div>
 

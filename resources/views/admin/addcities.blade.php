@@ -1,5 +1,5 @@
-@extends('layouts.master')
-@section('content')
+@extends('layoutadmin.master')
+@section('contentadmin')
 <div class="card" style="width: 30rem; margin-left: 30%; margin-top: 140px;">
 @if(session()->has('message'))
         <div class="alert alert-info" role="alert" style="text-align:end;font-size: 20px; ">

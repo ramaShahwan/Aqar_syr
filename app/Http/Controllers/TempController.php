@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Temp;
 use App\Models\Property;
 use Illuminate\Support\Facades\File; 
-
 use DateTime;
 
 class TempController extends Controller
@@ -16,7 +15,6 @@ class TempController extends Controller
     if (optional(auth()->user())->role == 'user') 
     {
     $user = auth()->user();
-
     $validated = $request->validate([
         'type' => 'required',
         'purpose' => 'required',
@@ -71,7 +69,6 @@ class TempController extends Controller
         $property->update();
      }
     return redirect()->back()->with('message','تم الإضافة');
-
     }
   }
 

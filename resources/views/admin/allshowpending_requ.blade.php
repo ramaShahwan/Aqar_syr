@@ -9,7 +9,7 @@
 					<div class="intro_content d-flex flex-lg-row flex-column align-items-start justify-content-start">
 
 						<div class="intro_title_container">
-							<div class="intro_title"> {{$property->type}}</div>
+							<div class="intro_title"> شقة</div>
 							<!-- <div class="intro_tags">
 								<ul>
 									<li><a href="#">Hottub</a></li>
@@ -22,7 +22,7 @@
 						</div>
 						<div class="intro_price_container ml-lg-auto d-flex flex-column align-items-start justify-content-center">
 							<div>السعر</div>
-							<div class="intro_price">{{$property->price}}</div>
+							<div class="intro_price">1999</div>
 						</div>
 
 					</div>
@@ -34,11 +34,11 @@
 			<!-- Intro Slider -->
 			<div class="owl-carousel owl-theme intro_slider">
 				<!-- Slide -->
-				<div class="owl-item"><img src="{{URL::asset('/img/estate/'.$property->estate_image)}}" alt=""></div>
+				<div class="owl-item"><img src="images/city_1.jpg"  alt=""></div>
 				<!-- Slide -->
-				<div class="owl-item"><img src="{{URL::asset('/img/estate/'.$property->estate_image)}}"alt=""></div>
+				<div class="owl-item"><img src="images/city_1.jpg" alt=""></div>
 				<!-- Slide -->
-				<div class="owl-item"><img src="{{URL::asset('/img/estate/'.$property->estate_image)}}" alt=""></div>
+				<div class="owl-item"><img src="images/city_1.jpg" alt=""></div>
 			</div>
 
 			<!-- Intro Slider Nav -->
@@ -78,12 +78,12 @@
 							<div class="property_rooms d-flex flex-sm-row flex-column align-items-start justify-content-start" style="    text-align: center;">
 
 								<!-- Property Room Item -->
-                                @if($property->type != 'غرفة' && $property->type != 'محل'  && $property->type != 'أرض')
+
 								<div class="property_room">
 									<div class="property_room_title">عدد الغرف</div>
 									<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
 										<div class="room_icon"><img src="{{asset('images/room_1.png')}}" alt=""></div>
-										<div class="room_num">{{$property->room}}</div>
+										<div class="room_num">5</div>
 									</div>
 								</div>
 
@@ -92,54 +92,54 @@
 									<div class="property_room_title">عدد الحمامات</div>
 									<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
 										<div class="room_icon"><img src="{{asset('images/room_2.png')}}" alt=""></div>
-										<div class="room_num">{{$property->bathroom}}</div>
+										<div class="room_num">3</div>
 									</div>
 								</div>
-                                @endif
+
 
 								<!-- Property Room Item -->
 								<div class="property_room">
 									<div class="property_room_title">المساحة</div>
 									<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
 										<div class="room_icon"><img src="{{asset('images/room_3.png')}}" alt=""></div>
-										<div class="room_num">{{$property->space}}</div>
+										<div class="room_num">100</div>
 									</div>
 								</div>
                                 <!-- Property Room Item -->
-                                @if(  $property->type == 'أرض')
+
 								<div class="property_room">
 									<div class="property_room_title">سعر المتر</div>
 									<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
 										<div class="room_icon"><img src="{{asset('images/room_3.png')}}" alt=""></div>
-										<div class="room_num">{{$property->meter_price}}</div>
+										<div class="room_num">77</div>
 									</div>
 								</div>
-                                @endif
+
 
 								<!-- Property Room Item -->
-                                @if(  $property->type == 'شقة')
+
 								<div class="property_room">
 									<div class="property_room_title">الطابق</div>
 									<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
 										<div class="room_icon"><img src="{{asset('images/room_4.png')}}" alt=""></div>
-										<div class="room_num">{{$property->floor}}</div>
+										<div class="room_num">اول</div>
 									</div>
 								</div>
-                                @endif
+
 
 								<!-- Property Room Item -->
 								<div class="property_room">
 									<div class="property_room_title">عرض الشارع</div>
 									<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
 										<div class="room_icon"><img src="{{asset('images/room_5.png')}}" alt=""></div>
-										<div class="room_num"> {{$property->street_width}} </div>
+										<div class="room_num"> 5م</div>
 									</div>
 								</div>
 								<div class="property_room">
 									<div class="property_room_title">عدد المشاهدات</div>
 									<div class="property_room_content d-flex flex-row align-items-center justify-content-start">
 										<div class="room_icon"><img src="{{asset('images/room_5.png')}}" alt=""></div>
-										<div class="room_num"> {{$property->number_show}}</div>
+										<div class="room_num"> 1</div>
 									</div>
 								</div>
 
@@ -151,7 +151,7 @@
 						<div class="property_description">
 							<div class="property_title">الوصف</div>
 							<div class="property_text property_text_2">
-								<p> {{$property->description}} </p>
+								<p> يحوي اربع غرف</p>
 							</div>
 						</div>
 
@@ -161,17 +161,18 @@
 							<div class="property_title">مواصفات اضافية</div>
 							<div class="details_container">
 								<ul>
-                                <li><span>حالة البناء :</span> {{$property->state}}</li>
-                                @if(  $property->purpose == 'بيع')
-									<li><span>الرخصة :</span> {{$property->license}} </li>
-                                    @endif
-									<li><span>اتجاه :</span>{{$property->location}}</li>
-									<li><span>الوجهة :</span>{{$property->direction}}</li>
+                                <li><span>حالة البناء :</span> سوبر ديلوكس</li>
+
+									<li><span>الرخصة :</span> طابو اخضر</li>
+
+									<li><span>اتجاه :</span>شرقي</li>
+									<li><span>الوجهة :</span>امامي</li>
 									<li><span>الامان :</span>العقار مفحوص من قبل شركة بيلدينغ رانك</li>
-									<li><span>موقع العقار :</span>{{$property->neighborhood->region->name}} - {{$property->neighborhood->name}}</li>
-									<li><span>مميزات العقار :</span> {{$property->features}}</li>
-									<li><span> الهاتف :</span> 0966333221</li>
-									<li><span>info@proengaqar.com :</span> البريد الالكتروني </li>
+									<li><span>موقع العقار :</span>داريا</li>
+									<li><span>مميزات العقار :</span> جانب مدرسة</li>
+									<li style=" display: inline;"><a class="btn btn-sm btn-primary" href="" style="width: 90px;    background-color:#28a745">قبول</a></li>
+									<li style=" display: inline;"><a class="btn btn-sm btn-primary" href="" style="width: 90px;    background-color:#28a745">رفض</a></li>
+                                    <li style=" display: inline;"><a class="btn btn-sm btn-primary" href="" style="width: 90px;    background-color:#28a745">تعديل</a></li>
 								</ul>
 							</div>
 						</div>
@@ -186,7 +187,7 @@
 								<div id="google_map" class="google_map">
 									<div class="map_container">
 										<div >
-											<video src="{{URL::asset('/img/estate/'.$property->estate_video)}}"    controls muted style="" class="video"></video>
+											<video src="images/VID-20240507-WA0000.mp4"    controls muted style="" class="video"></video>
 
 										</div>
 									</div>

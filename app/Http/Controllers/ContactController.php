@@ -15,13 +15,13 @@ class ContactController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             // 'email' => 'required'| 'string'|'lowercase'|'email'| 'max:255',
-            'email' => 'required|email',
+            'phone' => 'phone|min:10,max:14',
             'message' => 'required|max:255',
           ]);
 
         $contact = new Contact;
         $contact->name = $request->name;
-        $contact->email = $request->email;
+        $contact->phone = $request->phone;
         $contact->message = $request->message;
         $contact->save();
         return redirect()->back() ;

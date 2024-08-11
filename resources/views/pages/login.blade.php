@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.app')
 @section('content')
 <style>
     .citie{
@@ -35,14 +35,14 @@ background-attachment: fixed;
                 margin-left: 0px;
             }
             .imgre{
-        width: 600px;
+        width: 410px;
         height: 400px;
         margin-top: 60px;
 
     }
     .llogre{
 
-            margin-left: 50px;
+            margin-left: 0px;
 
 
     }
@@ -55,14 +55,14 @@ background-attachment: fixed;
                 margin-left: 0px;
             }
             .imgre{
-        width: 600px;
+        width: 410px;
         height: 400px;
         margin-top: 60px;
 
     }
     .llogre{
 
-            margin-left: 50px;
+            margin-left: 0px;
 
 
     }
@@ -75,14 +75,14 @@ background-attachment: fixed;
                 margin-left: 0px;
             }
             .imgre{
-        width: 600px;
+        width: 410px;
         height: 400px;
         margin-top: 60px;
 
     }
     .llogre{
 
-            margin-left: 50px;
+            margin-left: 0px;
 
 
     }
@@ -94,14 +94,14 @@ background-attachment: fixed;
                 margin-left: 0px;
             }
             .imgre{
-        width: 600px;
+        width: 410px;
         height: 400px;
         margin-top: 60px;
 
     }
     .llogre{
 
-            margin-left: 50px;
+            margin-left: 0px;
 
 
     }
@@ -176,7 +176,7 @@ background-attachment: fixed;
                                         <a class="forgot-pass " href="{{ url('register') }}"  style="color: #888e93; font-size: 14px; margin-right: 30px">
                                         {{ __('إنشاء حساب ؟') }}
                                     </a>
-                                    <a class="forgot-pass "  href="{{ route('home') }}" style="color: #888e93; font-size: 14px;margin-left: 10px;">
+                                    <a class="forgot-pass "  href="{{ route('index') }}" style="color: #888e93; font-size: 14px;margin-left: 10px;">
                                         {{ __('العودة إلى الرئيسية ') }}
                                     </a>
                                     </span>

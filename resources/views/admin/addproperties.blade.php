@@ -9,7 +9,7 @@
 <label for="" class="form-label" style="color: blue; font-size: 20px; text-align: center;"> عقار جديد</label>
 <form action="{{url('property/store')}}" method="post" enctype="multipart/form-data">
  @csrf
-	<div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
+	<!-- <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">الاسم</label>
         <input type="text" name="name"  class="form-control @error('name') is-invalid @enderror" style="background-color: white; color:black; text-align: end;" >
         @error('name')
@@ -17,7 +17,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-     </div>
+     </div> -->
      <div class="row mb-3">
                             <label for="estate_image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
 

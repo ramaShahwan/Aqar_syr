@@ -3,7 +3,8 @@
 <div class="container-xxl position-relative bg-white d-flex p-0">
 
    <!-- Recent Sales Start -->
-   <div style="padding-top: 100px;">
+   <div style="padding-top: 100px;
+    padding-right: 300px;">
    <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4"style="width:3000px;">
                     <div class="d-flex align-items-center justify-content-between mb-4">
@@ -26,7 +27,7 @@
                                     <th scope="col">Customer</th> -->
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 700px;">الأحداث</th>
 
-                                    <th scope="col" style="text-align: center;font-size: 20px; width: 500px;">المالك</th>
+                                    <!-- <th scope="col" style="text-align: center;font-size: 20px; width: 500px;">المالك</th> -->
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 500px;">الحي</th>
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 500px;">مميزات العقار</th>
 
@@ -48,7 +49,7 @@
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 500px;">الغاية</th>
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 500px;">النوع</th>
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 500px;">الصورة</th>
-                                    <th scope="col" style="text-align: center;font-size: 20px; width: 500px;">الاسم</th>
+                                    <!-- <th scope="col" style="text-align: center;font-size: 20px; width: 500px;">الاسم</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,7 +59,6 @@
 
                                     <td style="text-align: center;font-size: 20px;"><a class="btn btn-sm btn-danger" onclick="return confirm('هل تريد الحذف')" href="{{url('property/destroy',$call->id)}}"  style="width: 90px;">حذف</a>
                                     <a class="btn btn-sm btn-primary" href="{{url('property/edit', $call->id)}}" style="width: 90px;    background-color:#28a745">تعديل</a></td>
-                                    <td style="text-align: center;font-size: 20px;">{{$call->owner->name}}</td>
                                     <td style="text-align: center;font-size: 20px;">{{$call->neighborhood->name}}</td>
 
                                     <td style="text-align: center;font-size: 20px;">{{$call->features}}</td>
@@ -94,7 +94,7 @@
             </div>
             <!-- Recent Sales End -->
 </div>
-@include('layouts.sidebar')
+@include('layoutadmin.sidebar')
 </div>
 
 

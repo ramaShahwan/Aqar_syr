@@ -20,7 +20,7 @@
         @csrf
     </form>
 @else
-    <li><a href="{{ route('login') }}">تسجيل دخول</a></li>
+    <li><a href="{{ route('login') }}">Login</a></li>
 @endif
                             <li><a href="{{route('contact')}}">تواصل</a></li>
                             <li><a href="{{route('myproperties')}}">طلب عقاري</a></li>
@@ -75,7 +75,7 @@
         @csrf
     </form>
 @else
-    <li><a href="{{ route('login') }}">تسجيل دخول</a></li>
+    <li><a href="{{ route('login') }}">Login</a></li>
 @endif
 @if(auth()->check() && auth()->user()->role === 'admin')
     <li><a href="{{ route('dashboardd') }}">لوحة التحكم</a></li>
