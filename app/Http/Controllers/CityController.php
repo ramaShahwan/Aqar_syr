@@ -17,16 +17,6 @@ class CityController extends Controller
 {
   public function index()
     {
-        // $search=$request->search;
-        // $cities=City::when($search, function ($query, $search)
-        // {$query->where('name','like','%'.$search.'%');
-        // })->get();
-
-        // $cities->transform(function ($city) {
-        //     $city->setRelation('image', $city->media->where('collection_name', 'city_image')->first());
-        //     $city->unsetRelation('media');
-        //     return $city;
-        // });
         $cities = City::all();
         return view('pages.home',compact('cities'));
     }
@@ -38,7 +28,6 @@ class CityController extends Controller
             'city_image' => 'required',
           ]);
 
-        // $valida  ted = $request->validated();
         $city = new City;
         $city->name = $request->name;
         // $city->addMedia($request->file('image'))->toMediaCollection('city_image');
@@ -59,15 +48,6 @@ class CityController extends Controller
 
    public function edit($id)
    {
-        // $data=City::whereId($city_id)->get();
-      //       $data->transform(function ($city) {
-      //           $city->setRelation('image', $city->media->where('collection_name', 'city_image')->first());
-      //           $city->unsetRelation('media');
-      //           return $city ;
-      //       });
-      // $data = $data[0];
-     //     //    dd($data);
-
          $data = City::findOrFail($id);
          return view('admin.updatecities', compact('data'));
    }
@@ -77,15 +57,6 @@ class CityController extends Controller
             'name' => 'required',
             'city_image' => 'required',
           ]);
-
-        // $validated = $request->validated();
-        // $city = City::whereId($request->id)->first();
-        // $city->name = $request->name;
-        // if($request->image)
-        // {
-        //     $city->clearMediaCollection('city_image');
-        //     $city->addMedia($request->file('image'))->toMediaCollection('city_image');
-        // }
 
        $city = City::findOrFail($request->id);
        $oldImageName=$city->city_image;
@@ -113,20 +84,6 @@ class CityController extends Controller
     public function all_cities(Request $request)
     {
       $cities = City::all();
-
-
-        // $search=$request->search;
-        // $cities =  City::where('name', 'like', '%'.$search.'%')->orderBy('name', 'Asc')->select('name','city_image')->get();
-
-        // $cities=City::when($search, function ($query, $search)
-        // {$query->where('name','like','%'.$search.'%');
-        // })->get();
-        // $cities->transform(function ($city) {
-        //     $city->setRelation('image', $city->media->where('collection_name', 'city_image')->first());
-        //     $city->unsetRelation('media');
-        //     return $city;
-        // });
-
         return view('admin.cities',compact('cities'));
     }
   

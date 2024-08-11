@@ -7,7 +7,6 @@ use App\Models\Property;
 use App\Models\City;
 use App\Models\Region;
 use App\Models\Neighborhood;
-use App\Models\Owner;
 use App\Models\User;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\DB;
@@ -52,8 +51,8 @@ class PropertyController extends Controller
     public function create(Request $request)
     {
         $cities = City::all();
-        $owners = User::all();
-        return view('admin.addproperties')->with(['cities' => $cities,'owners'=> $owners]);
+        $users = User::all();
+        return view('admin.addproperties')->with(['cities' => $cities,'users'=> $users]);
     }
     /**
      * Store a newly created resource in storage.
@@ -91,7 +90,6 @@ class PropertyController extends Controller
         $property->user_id = $request->user_id;
         $property->building_rank = $request->building_rank;
         $property->save();
-
 
         // $property->addMedia($request->file('image'))->toMediaCollection('property_image');
         // if($request->video){
@@ -152,9 +150,9 @@ class PropertyController extends Controller
         // $cities = City::all();
 
         $data = Property::findOrFail($id);
-        $owners = User::all();
+        $users = User::all();
         // $neighborhoods = Neighborhood::all();
-        return view('admin.updateproperties', compact('data','owners'));
+        return view('admin.updateproperties', compact('data','users'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -176,7 +174,6 @@ class PropertyController extends Controller
         $property = Property::findOrFail($request->id);
         $oldImageName=$property->estate_image;
         $oldVideoName=$property->estate_video;
-
         $property->name = $request->name;
         $property->type = $request->type;
         $property->purpose = $request->purpose;
@@ -322,7 +319,7 @@ class PropertyController extends Controller
     public function search(Request $request)
     {
         $search=$request->search;
-        $props = Property::with('owner','neighborhood','neighborhood.region.city','neighborhood.region')->
+        $props = Property::with('user','neighborhood','neighborhood.region.city','neighborhood.region')->
         when($search, function ($query, $search)
         {$query->where('name','like','%'.$search.'%')
                ->orWhere('type','like','%'.$search.'%')
@@ -331,7 +328,7 @@ class PropertyController extends Controller
                ->orWhere('space','like','%'.$search.'%')
                ->orWhere('direction','like','%'.$search.'%')
                ->orWhere('license','like','%'.$search.'%')
-               ->orWhereHas('owner', function ($query) use ($search) {
+               ->orWhereHas('user', function ($query) use ($search) {
                 $query->where('name', 'like', '%'.$search.'%');})
                ->orWhereHas('neighborhood', function ($query) use ($search) {
                 $query->where('name', 'like', '%'.$search.'%');})

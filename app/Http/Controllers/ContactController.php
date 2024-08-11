@@ -40,9 +40,6 @@ class ContactController extends Controller
 
     public function destroy($id)
     {
-        // $city=Contact::whereId($id)->first();
-        // $city->delete();
-        
         Contact::findOrFail($id)->delete();
         return redirect()->back();
     }

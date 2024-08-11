@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Property;
+use App\Models\Temp;
+
 use Illuminate\Support\Facades\File; 
 
 class UserController extends Controller
@@ -116,6 +118,22 @@ class UserController extends Controller
            }
           $property->delete();
         }
+
+
+        $temps = Temp::where('user_id',$id)->get();
+        foreach($temps as $temp)
+        {
+        $oldImageEstateName =$temp->estate_image;
+          $oldVideoEstateName =$temp->estate_video;
+          if ($oldImageEstateName) {
+            File::delete(public_path('img/temp/') . $oldImageEstateName);
+           }
+           if ($oldVideoEstateName) {
+            File::delete(public_path('img/temp/') . $oldVideoEstateName);
+           }
+          $temp->delete();
+        }
+
          User::findOrFail($id)->delete();
         return redirect()->back();
     }

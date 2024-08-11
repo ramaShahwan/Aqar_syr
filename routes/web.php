@@ -106,7 +106,7 @@ Route::get('/home',[CityController::class,'index'])-> name('home');
 // Route::get('/create',[RegionController::class,'create']);
 // Route::get('/create',[NeighborhoodController::class,'create']);
 // Route::get('/create',[PropertyController::class,'create']);
-Route::get('/owner',[UserController::class,'index'])-> name('owner');
+Route::get('/users',[UserController::class,'index'])-> name('users');
 Route::get('/regions',[RegionController::class,'index'])-> name('regions');
 Route::get('/properties',[PropertyController::class,'index'])-> name('properties');
 Route::get('/neighborhoods',[NeighborhoodController::class,'index'])-> name('neighborhoods');
@@ -174,33 +174,49 @@ Route::get('getneighborhood', [PropertyController::class, 'getneighborhood'])->n
 // Route::get('/allshowproperties', function () {
 //     return view('pages.allshowproperties');
 // })-> name('allshowproperties');
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::group(['middleware'=> ['auth:sanctum']],function(){
-    Route::prefix('auth')->controller(AuthController::class)->group(function(){
-        Route::post('logout', 'logout');
-});
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+// Route::group(['middleware'=> ['auth:sanctum']],function(){
+//     Route::prefix('auth')->controller(AuthController::class)->group(function(){
+//         Route::post('logout', 'logout');
+// });
+// });
 
-Route::prefix('auth')->controller(AuthController::class)->group(function(){
+// Route::prefix('auth')->controller(AuthController::class)->group(function(){
 
-    Route::post('login', 'login');
+//     Route::post('login', 'login');
 
-});
+// });
 Route::prefix('contact')->controller(ContactController::class)->group(function(){
     Route::post('store', 'store');
     Route::get('/contectadmin', 'index');
     Route::get('destroy/{id}', 'destroy');
 });
 
-// Admin Routes
+// user dashboard Routes
 Route::middleware(['auth', 'verified', 'user'])-> prefix('user')->group(function () {
-    Route::post('storeTempEstate', [TempController::class, 'storeTempEstate'])->name('store_Temp_Estate');
+    Route::post('storeTempEstate', [TempController::class, 'storeTempEstate']);
     Route::get('property/show/{id}', [PropertyController::class, 'show']);
-    Route::get('favourites/{user_id}', [FavController::class, 'getFav']);
+    Route::get('getfavourites', [FavController::class, 'getFav']);
+    Route::post('setfavourites/{estate_id}', [FavController::class, 'setFav']);
+    Route::get('getPenndEstate', [TempController::class, 'getPenndEstate']);
+    Route::get('getAcceptEstate', [TempController::class, 'getAcceptEstate']);
+    Route::get('getCancleEstate', [TempController::class, 'getCancleEstate']);
+});
 
+// admin dashboard Routes
+Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(function () {
+    
+    Route::post('updatePendToAccept/{id}', [TempController::class, 'updatePendToAccept']);
+    Route::post('updatePendToCancle/{id}', [TempController::class, 'updatePendToCancle']);
+    Route::post('updatePend/{id}', [TempController::class, 'updatePend']);
+    Route::get('getPendDetails/{id}', [TempController::class, 'getPendDetails']);
+    Route::delete('destroy/{id}', [TempController::class, 'destroy']);
 
+    Route::get('getAcceptEstateForAdmin', [TempController::class, 'getAcceptEstateForAdmin']);
+    Route::get('getCancleEstateForAdmin', [TempController::class, 'getCancleEstateForAdmin']);
+    Route::get('getPendEstateForAdmin', [TempController::class, 'getPendEstateForAdmin']);
 });
 
 
