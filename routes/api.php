@@ -24,7 +24,7 @@ use App\Http\Controllers\Api\PropertyAPIController;
 
 // for city
 Route::get('/all_cities', [CityAPIController::class, 'index']);
-   
+
 // for contact
 Route::post('/store_contact', [ContactAPIController::class, 'store']);
 
@@ -47,11 +47,24 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);    
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
 
 //send with token
 Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('user', 'UserController@getAuthenticatedUser');
-    Route::get('closed', 'DataController@closed');
-});
+
+    Route::get('/show_property/{id}', [PropertyAPIController::class, 'show']);
+
+    Route::get('/get_region/{id}', [TempAPIController::class, 'get_region']);
+    Route::get('/getneighborhood/{id}', [TempAPIController::class, 'getneighborhood']);
+
+    Route::post('/storeTempEstate', [TempAPIController::class, 'storeTempEstate']);
+    Route::get('/getMyEstate', [TempAPIController::class, 'getMyEstate']);
+
+    Route::post('/setFav/{id}', [FavAPIController::class, 'setFav']);
+    Route::get('/getFav', [FavAPIController::class, 'getFav']);
+
+    Route::post('/show', [RE_AgentAPIController::class, 'show']);
+    Route::get('/Advancedsearch', [RE_AgentAPIController::class, 'getFav']);
+    });
+

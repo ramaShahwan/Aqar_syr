@@ -81,7 +81,7 @@
                                     <td style="text-align: center;font-size: 20px;">{{$call->purpose}}</td>
                                     <td style="text-align: center;font-size: 20px;">{{$call->type}}</td>
                                     <td style="text-align: center;font-size: 20px;"><img src="{{URL::asset('/img/estate/'.$call->estate_image)}}" width="100px"height="50px"></td>
-                                    <td style="text-align: center;font-size: 20px;">{{$call->name}}</td>
+                                    <!-- <td style="text-align: center;font-size: 20px;">{{$call->name}}</td> -->
 
                                 </tr>
                                 @endforeach

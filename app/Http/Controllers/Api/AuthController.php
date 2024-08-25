@@ -86,7 +86,8 @@ class AuthController extends Controller
                     $validator->validated(),
                     ['password' => bcrypt($request->password)]
                 ));
-
+              $user->role ='user';
+              $user->update();
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user

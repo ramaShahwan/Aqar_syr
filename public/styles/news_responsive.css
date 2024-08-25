@@ -27,7 +27,7 @@
 
 @media only screen and (max-width: 1600px)
 {
-
+	
 }
 
 /************
@@ -36,7 +36,7 @@
 
 @media only screen and (max-width: 1440px)
 {
-
+	
 }
 
 /************
@@ -45,7 +45,7 @@
 
 @media only screen and (max-width: 1380px)
 {
-
+	
 }
 
 /************
@@ -54,7 +54,7 @@
 
 @media only screen and (max-width: 1280px)
 {
-
+	
 }
 
 /************
@@ -65,7 +65,7 @@
 {
 	.main_nav
 	{
-		/* margin-left: 60px; */
+		margin-left: 60px;
 	}
 	.main_nav ul li:not(:last-child)
 	{
@@ -87,8 +87,7 @@
 
 @media only screen and (max-width: 1100px)
 {
-   
-
+	
 }
 
 /************
@@ -97,7 +96,7 @@
 
 @media only screen and (max-width: 1024px)
 {
-
+	
 }
 
 /************
@@ -139,7 +138,7 @@
 		height: auto;
 		margin-top: 80px;
 		margin-bottom: 43px;
-		/* background: linear-gradient(to right, #487fee, #32fa95); */
+		background: linear-gradient(to right, #487fee, #32fa95);
 	}
 	.home_search_content
 	{
@@ -223,7 +222,7 @@
 
 @media only screen and (max-width: 959px)
 {
-
+	
 }
 
 /************
@@ -232,7 +231,7 @@
 
 @media only screen and (max-width: 880px)
 {
-
+	
 }
 
 /************
@@ -241,7 +240,7 @@
 
 @media only screen and (max-width: 768px)
 {
-
+	
 }
 
 /************
@@ -250,7 +249,7 @@
 
 @media only screen and (max-width: 767px)
 {
-
+	
 }
 
 /************
@@ -378,7 +377,7 @@
 
 @media only screen and (max-width: 539px)
 {
-
+	
 }
 
 /************
@@ -399,7 +398,7 @@
 
 @media only screen and (max-width: 479px)
 {
-
+	
 }
 
 /************
@@ -408,5 +407,5 @@
 
 @media only screen and (max-width: 400px)
 {
-
+	
 }

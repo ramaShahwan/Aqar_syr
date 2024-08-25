@@ -12,12 +12,12 @@ class ContactController extends Controller
 {
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            // 'email' => 'required'| 'string'|'lowercase'|'email'| 'max:255',
-            'phone' => 'phone|min:10,max:14',
-            'message' => 'required|max:255',
-          ]);
+        // $validated = $request->validate([
+        //     'name' => 'required',
+        //     // 'email' => 'required'| 'string'|'lowercase'|'email'| 'max:255',
+        //     'phone' => 'phone|min:10,max:14',
+        //     'message' => 'required|max:255',
+        //   ]);
 
         $contact = new Contact;
         $contact->name = $request->name;

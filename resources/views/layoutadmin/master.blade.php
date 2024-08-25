@@ -4,10 +4,10 @@
 <head id="head">
     <meta charset="utf-8">
     <title>المحترف لتطوير وتسويق العقار </title>
-    <link rel="icon" href="{{asset('images/Untitled-4.png')}}" type="image/x-icon" />
+    <link rel="icon" href="{{asset('images/tt.png')}}" type="image/x-icon" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Font Awesome -->
     <link href="{{asset('../css/all.min.css')}}" rel="stylesheet">
@@ -16,6 +16,16 @@
     {{-- <link href="{{asset('../img/favicon.ico')}}" rel="icon"> --}}
     <!-- bootstrap -->
     <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Changa:wght@200..800&family=Noto+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Noto+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
 
 
     <!-- Libraries Stylesheet -->

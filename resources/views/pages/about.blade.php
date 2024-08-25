@@ -3,13 +3,16 @@
 <!-- Home -->
 
 <div class="home">
-		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/about.jpg" data-speed="0.8"></div>
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/pp.jpg" data-speed="0.8"></div>
 		<div class="home_container">
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<div class="home_content d-flex flex-row align-items-end justify-content-start">
-							<div class="home_title">حول الموقع</div>
+						<div class="home_content d-flex flex-row align-items-end justify-content-start" style="    direction: rtl;">
+							<div class="home_title" style="color: #FFFFFF;
+    background: #274565;
+    padding: 7px;
+    ">حول الموقع</div>
 							<!-- <div class="breadcrumbs ml-auto">
 								<ul>
 									<li><a href="index.htmo">Home</a></li>
@@ -94,9 +97,10 @@
 				<div class="col-lg-6">
 					<div class="about_content">
 						<div class="section_title">معلومات حول الموقع</div>
-						<div class="section_subtitle">أهداف الموقع</div>
-						<div class="about_text">
-							<p>نحن موقع متخصص في تقديم خدمات عقارية متكاملة، نقدم خدمات شراء وبيع العقارات، إدارة الأملاك، تأجير الوحدات السكنية والتجارية، تقييم العقارات، وتقديم استشارات عقارية، يتألف فريقنا من محترفين متخصصين في مجال العقارات، يعملون على تحقيق أهداف عملائنا وتلبية احتياجاتهم علماً أننا نقوم بفحص العقار بالتعاون مع شركة بيلدنغ رانك ونعطي تقرير فني عن كل عقار يتم تسويقه من خلالنا </p>
+						<div class="section_subtitle" style="font-weight: 900;">أهداف الموقع</div>
+						<div class="about_text" style="text-align: end;">
+							<p>نحن شركة متخصصة في تقديم خدمات عقارية متكاملة، نقدم خدمات شراء وبيع العقارات، إدارة الأملاك، تأجير الوحدات السكنية والتجارية، تقييم العقارات، وتقديم استشارات عقارية، يتألف فريقنا من محترفين متخصصين في مجال العقارات، يعملون على تحقيق أهداف عملائنا وتلبية احتياجاتهم علماً أننا نقوم بفحص العقار بالتعاون مع شركة بيلدنغ رانك ونعطي تقرير فني عن كل عقار يتم تسويقه من خلالنا </p>
+                            <a href=" https://www.buildingranks.com/" class="blu" style="color: #1d3c5d;border-bottom: 2px solid #1d3c5d;">Building Rank </a>
 						</div>
 					</div>
 				</div>

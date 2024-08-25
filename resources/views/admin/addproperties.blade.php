@@ -67,6 +67,24 @@
                                 @enderror
 
     </div>
+    <fieldset class="row mb-3" style="    margin-left: 30px;">
+    <legend class="col-form-label col-sm-2 pt-0" style="    text-align: right;
+    max-width: 100%;">البناء مفحوص</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="building_rank" id="gridRadios1" value="0" checked>
+        <label class="form-check-label" for="gridRadios1">
+          نعم
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="building_rank" id="gridRadios2" value="1">
+        <label class="form-check-label" for="gridRadios2">
+          لا
+        </label>
+      </div>
+    </div>
+  </fieldset>
 <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 380px;font-size: 20px;">عدد الغرف</label>
         <input type="number" name="room"  class="form-control @error('room') is-invalid @enderror" style="background-color: white; color:black; text-align: end;"  >
@@ -256,19 +274,19 @@
 
 <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">المالك</label>
-        <select class="form-select @error('owner_id') is-invalid @enderror" name="owner_id" id="owner_id" aria-label="Default select example" style="background-color: white; color:black; text-align: end;width: 450px;height: 35px;border-color: #ddd7d7;font-size: 20px;" >
+        <select class="form-select @error('user_id') is-invalid @enderror" name="user_id" id="user_id" aria-label="Default select example" style="background-color: white; color:black; text-align: end;width: 450px;height: 35px;border-color: #ddd7d7;font-size: 20px;" >
         <option selected></option>
 
 
 
-        @foreach ($owners as $owner)
-  <option value="{{ $owner->id }}">{{ $owner->name }}</option>
+        @foreach ($users as $user)
+  <option value="{{ $user->id }}">{{ $user->name }}</option>
   @endforeach
 
 
 
 </select>
-@error('owner_id')
+@error('user_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

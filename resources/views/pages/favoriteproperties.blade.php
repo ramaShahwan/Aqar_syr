@@ -13,131 +13,33 @@
 			<div class="row properties_row">
 
 				<!-- Property -->
+                @if($favs->isNotEmpty())
+                @foreach($favs as $fav)
 				<div class="col-xl-4 col-lg-6 property_col">
 					<div class="property">
 						<div class="property_image">
-							<img src="images/ارمان-حلب-تخت-دوت-كوم-2.jpg" alt="">
-							<div class="tag_featured property_tag"><a href="property.html">المزيد من التفاصيل  </a></div>
+							<img src="{{URL::asset('/img/estate/'.$fav->properties->estate_image)}}"alt="">
+							<div class="tag_featured property_tag"><a href="{{url('property/show', $fav->properties->id)}}">المزيد من التفاصيل  </a></div>
 						</div>
 						<div class="property_body text-center">
-							<div class="property_location">شقة</div>
-							<div class="property_title"><a href="property.html">بيع</a></div>
-							<div class="property_title"><a href="property.html">داريا</a></div>
-							<div class="property_price">مليارين</div>
+							<div class="property_location">{{$fav->properties->type}}</div>
+							<div class="property_title"><a href="#">{{$fav->properties->purpose}}</a></div>
+							<div class="property_title"><a href="#">{{$fav->properties->neighborhood->region->name}}</a></div>
+							<div class="property_price">{{$fav->properties->price}}</div>
 						</div>
 						<div class="property_footer d-flex flex-row align-items-center justify-content-start">
-							<div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Ftsq</span></div>
-							<div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 Rooms</span></div>
-							<div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 Bathrooms</span></div>
+							<div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>{{$fav->properties->space}} Ftsq</span></div>
+							<div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>{{$fav->properties->room}} Rooms</span></div>
+							<div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>{{$fav->properties->bathroom}} Bathrooms</span></div>
 						</div>
 					</div>
 				</div>
+                @endforeach
+                @else
+    <p style="display: block; margin: 30px 80px;">لا توجد عقارات مفضلة .</p>
+@endif
 
-				<!-- Property -->
-				<div class="col-xl-4 col-lg-6 property_col">
-					<div class="property">
-						<div class="property_image">
-							<img src="images/65c17dffeb3fb966760523.webp" alt="">
-							<div class="tag_featured property_tag"><a href="property.html">المزيد من التفاصيل  </a></div>
-						</div>
-						<div class="property_body text-center">
-							<div class="property_location">شقة</div>
-							<div class="property_title"><a href="property.html">بيع</a></div>
-							<div class="property_title"><a href="property.html">قدسيا</a></div>
-							<div class="property_price">مليار</div>
-						</div>
-						<div class="property_footer d-flex flex-row align-items-center justify-content-start" >
 
-                        <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Ftsq</span></div>
-							<div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 Rooms</span></div>
-							<div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 Bathrooms</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Property -->
-				<div class="col-xl-4 col-lg-6 property_col">
-					<div class="property">
-						<div class="property_image">
-							<img src="images/65c17e00849a4171881872.webp" alt="">
-							<div class="tag_featured property_tag"><a href="property.html">المزيد من التفاصيل  </a></div>
-						</div>
-						<div class="property_body text-center">
-							<div class="property_location">شقة</div>
-							<div class="property_title"><a href="property.html">بيع</a></div>
-							<div class="property_title"><a href="property.html">المهاجرين</a></div>
-							<div class="property_price">مليار</div>
-						</div>
-						<div class="property_footer d-flex flex-row align-items-center justify-content-start">
-							<div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Ftsq</span></div>
-							<div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 Rooms</span></div>
-							<div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 Bathrooms</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Property -->
-				<div class="col-xl-4 col-lg-6 property_col">
-					<div class="property">
-						<div class="property_image">
-							<img src="images/ارمان-حلب-تخت-دوت-كوم-2.jpg" alt="">
-							<div class="tag_featured property_tag"><a href="property.html">المزيد من التفاصيل  </a></div>
-						</div>
-						<div class="property_body text-center">
-							<div class="property_location">شقة</div>
-							<div class="property_title"><a href="property.html">بيع</a></div>
-							<div class="property_title"><a href="property.html">المهاجرين</a></div>
-							<div class="property_price">مليار</div>
-						</div>
-						<div class="property_footer d-flex flex-row align-items-center justify-content-start">
-							<div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Ftsq</span></div>
-							<div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 Rooms</span></div>
-							<div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 Bathrooms</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Property -->
-				<div class="col-xl-4 col-lg-6 property_col">
-					<div class="property">
-						<div class="property_image">
-							<img src="images/ارمان-حلب-تخت-دوت-كوم-2.jpg" alt="">
-							<div class="tag_featured property_tag"><a href="property.html">المزيد من التفاصيل  </a></div>
-						</div>
-						<div class="property_body text-center">
-							<div class="property_location">شقة</div>
-							<div class="property_title"><a href="property.html">بيع</a></div>
-							<div class="property_title"><a href="property.html">المهاجرين</a></div>
-							<div class="property_price">مليار</div>
-						</div>
-						<div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                        <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Ftsq</span></div>
-							<div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 Rooms</span></div>
-							<div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 Bathrooms</span></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Property -->
-				<div class="col-xl-4 col-lg-6 property_col">
-					<div class="property">
-						<div class="property_image">
-							<img src="images/ارمان-حلب-تخت-دوت-كوم-2.jpg" alt="">
-							<div class="tag_featured property_tag"><a href="property.html">المزيد من التفاصيل  </a></div>
-						</div>
-						<div class="property_body text-center">
-							<div class="property_location">شقة</div>
-							<div class="property_title"><a href="property.html">بيع</a></div>
-							<div class="property_title"><a href="property.html">المهاجرين</a></div>
-							<div class="property_price">مليار</div>
-						</div>
-						<div class="property_footer d-flex flex-row align-items-center justify-content-start">
-                        <div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Ftsq</span></div>
-							<div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 Rooms</span></div>
-							<div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 Bathrooms</span></div>
-						</div>
-					</div>
-				</div>
 
 
 				<!-- Property -->

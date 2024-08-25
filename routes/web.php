@@ -10,6 +10,7 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\TempController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FavController;
+use App\Http\Controllers\RE_AgentController;
 use App\Http\Controllers\Api\AuthController;
 
 
@@ -77,9 +78,9 @@ Route::get('/addproperties', function () {
 // Route::get('/owner', function () {
 //     return view('admin.owner');
 // })-> name('owner');
-Route::get('/addowner', function () {
-    return view('admin.addowner');
-})-> name('addowner');
+Route::get('/adduser', function () {
+    return view('admin.adduser');
+})-> name('adduser');
 Route::get('/regions', function () {
     return view('admin.regions');
 })-> name('regions');
@@ -111,6 +112,7 @@ Route::get('/regions',[RegionController::class,'index'])-> name('regions');
 Route::get('/properties',[PropertyController::class,'index'])-> name('properties');
 Route::get('/neighborhoods',[NeighborhoodController::class,'index'])-> name('neighborhoods');
 Route::get('/contectadmin',[ContactController::class,'index'])-> name('contectadmin');
+// Route::get('/agents',[RE_AgentController::class,'index'])-> name('agents');
 Route::prefix('city')->controller(CityController::class)->group(function(){
     Route::get('/create', 'create');
     Route::post('/store', 'store');
@@ -119,7 +121,7 @@ Route::prefix('city')->controller(CityController::class)->group(function(){
     Route::get('/cities', 'all_cities');
     Route::get('/show/{id}', 'show');
     Route::get('/destroy/{id}', 'destroy');
-   
+
 });
 Route::prefix('user')->controller(UserController::class)->group(function(){
     Route::post('/store', 'store');
@@ -161,7 +163,7 @@ Route::prefix('property')->controller(PropertyController::class)->group(function
     Route::get('regions_for_city', 'regions_for_city');
     Route::get('neighborhoods_for_region', 'neighborhoods_for_region');
     Route::get('get_by_city/{cityName}', 'get_by_city');
-    Route::get('get_by_city_type/{type}/{cityName}/{purpose}', 'get_by_city_type');
+    Route::get('get_by_city_type/{type}/{purpose}/{cityName}', 'get_by_city_type');
     Route::get('search', 'search');
 
 });
@@ -194,36 +196,76 @@ Route::prefix('contact')->controller(ContactController::class)->group(function()
     Route::get('destroy/{id}', 'destroy');
 });
 
+
 // user dashboard Routes
-Route::middleware(['auth', 'verified', 'user'])-> prefix('user')->group(function () {
-    Route::post('storeTempEstate', [TempController::class, 'storeTempEstate']);
-    Route::get('property/show/{id}', [PropertyController::class, 'show']);
-    Route::get('getfavourites', [FavController::class, 'getFav']);
-    Route::post('setfavourites/{estate_id}', [FavController::class, 'setFav']);
-    Route::get('getPenndEstate', [TempController::class, 'getPenndEstate']);
-    Route::get('getAcceptEstate', [TempController::class, 'getAcceptEstate']);
-    Route::get('getCancleEstate', [TempController::class, 'getCancleEstate']);
-});
 
-// admin dashboard Routes
-Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(function () {
-    
-    Route::post('updatePendToAccept/{id}', [TempController::class, 'updatePendToAccept']);
-    Route::post('updatePendToCancle/{id}', [TempController::class, 'updatePendToCancle']);
-    Route::post('updatePend/{id}', [TempController::class, 'updatePend']);
-    Route::get('getPendDetails/{id}', [TempController::class, 'getPendDetails']);
-    Route::delete('destroy/{id}', [TempController::class, 'destroy']);
+// Route::middleware(['auth', 'verified', 'user'])->group(function () {
+//     //for user_dashboard
+//         Route::get('getMyEstate', [TempController::class, 'getMyEstate']);
+//         Route::get('addmyproperties', [TempController::class, 'create'])->name('addmyproperties');
+//         Route::post('storeTempEstate', [TempController::class, 'storeTempEstate'])->name('storeTempEstate');
+//         Route::get('property/show/{id}', [PropertyController::class, 'show']);
+//         Route::get('getFav', [FavController::class, 'getFav'])->name('getFav');
+//         Route::post('setFav/{id}', [FavController::class, 'setFav'])->name('setFav');
 
-    Route::get('getAcceptEstateForAdmin', [TempController::class, 'getAcceptEstateForAdmin']);
-    Route::get('getCancleEstateForAdmin', [TempController::class, 'getCancleEstateForAdmin']);
-    Route::get('getPendEstateForAdmin', [TempController::class, 'getPendEstateForAdmin']);
+    //for estate
+        // Route::get('getPenndEstate', [TempController::class, 'getPenndEstate']);
+        // Route::get('getAcceptEstate', [TempController::class, 'getAcceptEstate']);
+        // Route::get('getCancleEstate', [TempController::class, 'getCancleEstate']);
+
+     //for agents
+    //     Route::get('show', [RE_AgentController::class, 'show'])->name('show');
+    //     Route::get('Advancedsearch', [RE_AgentController::class, 'Advancedsearch']);
+
+    // });
+
+    // admin dashboard Routes
+    Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+
+        Route::post('updatePendToAccept/{id}', [TempController::class, 'updatePendToAccept'])->name('updatePendToAccept');
+        Route::post('updatePendToCancle/{id}', [TempController::class, 'updatePendToCancle'])->name('updatePendToCancle');
+        Route::get('editPend/{id}', [TempController::class, 'editPend'])->name('editPend');
+        Route::post('updatePend/{id}', [TempController::class, 'updatePend']);
+        Route::get('getPendDetails/{id}', [TempController::class, 'getPendDetails'])->name('getPendDetails');
+        Route::delete('destroy/{id}', [TempController::class, 'destroy']);
+
+        Route::get('getAcceptEstateForAdmin', [TempController::class, 'getAcceptEstateForAdmin'])->name('getAcceptEstateForAdmin');
+        Route::get('getCancleEstateForAdmin', [TempController::class, 'getCancleEstateForAdmin'])->name('getCancleEstateForAdmin');
+        Route::get('getPendEstateForAdmin', [TempController::class, 'getPendEstateForAdmin'])->name('getPendEstateForAdmin');
+
+      Route::get('agents', [RE_AgentController::class, 'index'])->name('agents');
+        Route::get('create', [RE_AgentController::class, 'create']);
+        Route::post('store', [RE_AgentController::class, 'store']);
+        Route::get('edit/{id}', [RE_AgentController::class, 'edit']);
+        Route::post('update/{id}', [RE_AgentController::class, 'update']);
+        Route::get('destroy/{id}', [RE_AgentController::class, 'destroy']);
+        // Route::get('show', [RE_AgentController::class, 'show'])->name('show');
+        // Route::get('Advancedsearch', [RE_AgentController::class, 'Advancedsearch']);
+
+    });
+    Route::middleware(['auth', 'verified'])->group(function () {
+//for agents
+Route::get('show', [RE_AgentController::class,'show']);
+Route::get('Advancedsearch', [RE_AgentController::class, 'Advancedsearch']);
+
+//for estate request
+Route::get('getMyEstate', [TempController::class, 'getMyEstate']);
+Route::get('create', [TempController::class, 'create'])->name('addmyproperties');
+Route::post('storeTempEstate', [TempController::class, 'storeTempEstate'])->name('storeTempEstate');
+Route::get('property/show/{id}', [PropertyController::class, 'show']);
+Route::get('getFav', [FavController::class, 'getFav'])->name('getFav');
+Route::post('setFav/{id}', [FavController::class, 'setFav'])->name('setFav');
 });
 
 
 //fatima routes
-Route::get('/myproperties', function () {
-    return view('pages.myproperties');
-})-> name('myproperties');
+// Route::get('/getMyEstate', function () {
+//     return view('pages.myproperties');
+// })-> name('getMyEstate');
+Route::get('/favoriteproperties', function () {
+    return view('pages.favoriteproperties');
+})-> name('favoriteproperties');
+
 Route::get('/pending_requests', function () {
     return view('admin.pending_requests');
 })-> name('pending_requests');
@@ -241,7 +283,7 @@ Route::get('/allshowpending_requ', function () {
 Route::get('/{any}', function() {
     return redirect('/');
   })->where('any', '.*');
-  
-  
+
+
 
 require __DIR__.'/auth.php';

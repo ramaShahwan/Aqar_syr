@@ -47,8 +47,13 @@ body
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
-	background: #FFFFFF;
+	/* background: #FFFFFF; */
 	color: #a5a5a5;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(../images/property_6.jpg);
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
 }
 div
 {
@@ -294,10 +299,10 @@ section
 	top: 0;
 	left: 0;
 	width: 100%;
-	background: #3f6fce;
+    background: linear-gradient(to left, #1a395b, #d6e0eb);
 	z-index: 200;
-	border-bottom: solid 1px transparent;
-    /* border-image: linear-gradient(to right, #487fee, #32fa95); */
+	border-bottom: none;
+    border-image: linear-gradient(to right, #487fee, #32fa95);
     border-image-slice: 1;
     -webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
@@ -328,11 +333,11 @@ section
 }
 .logo img
 {
-	max-width: 100%;
+	margin-left: -60px;
 }
 .main_nav
 {
-	/* margin-left: 157px; */
+	margin-left: 150px;
 }
 .main_nav ul li
 {
@@ -344,20 +349,25 @@ section
 }
 .main_nav ul li a
 {
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: 500;
 	color: #FFFFFF;
-	/* -webkit-transition: all 200ms ease;
+	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
-	transition: all 200ms ease; */
+	transition: all 200ms ease;
 }
-/* .main_nav ul li.active a,
+
 .main_nav ul li a:hover
 {
-	color: #2cd983;
-} */
+	/* color: #2cd983; */
+	background-color: #334f6e !important;
+	height: 100px !important;
+	width: 130px !important;
+	padding: 30px 20px;
+    border-top: 2px solid #FFFFFF  !important;
+}
 .phone_num
 {
 	height: 43px;
@@ -372,7 +382,7 @@ section
 	height: 100%;
 	padding-left: 16px;
 	padding-right: 18px;
-	background: #3f6fce;
+	background: #334f6e;
 	border-radius: 20px;
 }
 .phone_num span
@@ -412,7 +422,7 @@ section
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
-	/* background: linear-gradient(to right, #487fee, #32fa95); */
+	background: linear-gradient(to left, #1a395b, #d6e0eb);
 	z-index: 201;
 	opacity: 0;
 	visibility: hidden;
@@ -1376,3 +1386,66 @@ section
 	text-transform: uppercase;
 	font-weight: 600;
 }
+.adddper{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.addlab{
+	float: right;
+}
+.addwa{
+	/* width: 450px;
+	height: 35px; */
+	border-color: #ddd7d7 !important;
+
+
+}
+.addwa:focus{
+	box-shadow: 0 0 0 .2rem rgb(79 71 72 / 25%) !important;
+}
+.addwac{
+    width: 458px;
+    height: 38px;
+}
+.addcard{
+	width: 30rem;
+	margin-left: 30%;
+}
+@media only screen and (max-width: 575px)
+{.adddper{
+		margin-left: 0px !important;
+		margin-right: 0px !important;
+		padding: 5px;
+	}
+	.addlab{
+		margin-left: 0px !important;
+		float: right;
+	}
+	.addcard {
+		width: auto !important;
+		margin-left: 0px;
+	}
+	.addwac{
+		width: 300px;
+		height: 35px;
+	}
+}
+@if(auth()->check() && auth()->user()->role === 'admin')
+  .main_nav ul {
+  display: flex;
+  flex-wrap: wrap; /* لتجنب انتقال العناصر لخط جديد */
+ }
+.main_nav{
+margin:20px ;
+}
+.main_nav ul li {
+  margin-right: 10px; /* تقليل الهامش بين العناصر */
+  padding: 5px 10px; /* تعديل الحواف الداخلية */
+}
+.main_nav ul li:not(:last-child) {
+margin-right: 10px;
+}
+.main_nav ul li a:hover {
+  padding: 30px 20px; /* تعديل حواف الروابط الداخلية */
+}
+@endif

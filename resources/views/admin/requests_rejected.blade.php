@@ -27,7 +27,6 @@
                                     <th scope="col">Invoice</th>
                                     <th scope="col">Customer</th> -->
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 100px;">سبب الرفض</th>
-                                    <!-- <th scope="col" style="text-align: center;font-size: 20px; width: 300px;">الوصف</th> -->
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 100px;">مساحة</th>
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 100px;">الغرض  </th>
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 100px;">الصورة</th>
@@ -37,17 +36,19 @@
                             <tbody>
 
 
-
+                            @foreach($estates as $call)
                                 <tr>
 
-                                    <td style="text-align: center;font-size: 20px;">
-                                     لانو لا يحقق المواصفات</td>
-                                    <td style="text-align: center;font-size: 20px;">100م</td>
-                                    <td style="text-align: center;font-size: 20px;">بيع </td>
-                                    <td style="text-align: center;font-size: 20px;"> <img src="images/city_1.jpg"  width="100px"></td>
-                                    <td style="text-align: center;font-size: 20px;"> شقة</td>
+
+                                    <td style="text-align: center;font-size: 20px;">{{$call->reason}}</td>
+                                    <td style="text-align: center;font-size: 20px;">{{$call->space}}</td>
+                                    <td style="text-align: center;font-size: 20px;">{{$call->purpose}} </td>
+                                    <td style="text-align: center;font-size: 20px;"> <img src="{{URL::asset('/img/temp/'.$call->estate_image)}}"  width="100px"></td>
+                                    <td style="text-align: center;font-size: 20px;"> {{$call->type}}</td>
 
                                 </tr>
+
+                                @endforeach
 
 
 

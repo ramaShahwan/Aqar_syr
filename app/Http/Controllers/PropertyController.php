@@ -8,7 +8,7 @@ use App\Models\City;
 use App\Models\Region;
 use App\Models\Neighborhood;
 use App\Models\User;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 class PropertyController extends Controller
 {
@@ -120,7 +120,7 @@ class PropertyController extends Controller
      * Display the specified resource.
      */
     public function show($id)
-    {
+    { if( optional(auth())){
         $property = Property::with('neighborhood.region.city')->whereId($id)->first();
         $property->number_show++;
         // $property->transform(function ($prop) {
@@ -133,26 +133,27 @@ class PropertyController extends Controller
         $property->save();
 
         return view('pages.allshowproperties', compact('property'));
+
+    }else{
+        return redirect('login');
+    }
+
     }
 
 
     public function edit($id)
     {
-        // $data=Property::whereId($id)->get();
-        // $data->transform(function ($property) {
-        //     $property->setRelation('image', $property->media->where('collection_name', 'property_image')->first());
-        //     $property->setRelation('video', $property->media->where('collection_name', 'property_video')->first());
-        //     $property->unsetRelation('media');
-        //     return $property;
-        // });
-        // $data = $data[0];
-        //    dd($data);
-        // $cities = City::all();
 
         $data = Property::findOrFail($id);
+        $my_neighborhood = Neighborhood::where('id',$data->neighborhood_id)->first();
+        $my_region = Region::where('id',$my_neighborhood->region_id)->first();
+        $my_city = City::where('id',$my_region->city_id)->first();
+
         $users = User::all();
+        $cities = City::all();
+
         // $neighborhoods = Neighborhood::all();
-        return view('admin.updateproperties', compact('data','users'));
+        return view('admin.updateproperties', compact('data','users','cities','my_city','my_region','my_neighborhood'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -174,7 +175,6 @@ class PropertyController extends Controller
         $property = Property::findOrFail($request->id);
         $oldImageName=$property->estate_image;
         $oldVideoName=$property->estate_video;
-        $property->name = $request->name;
         $property->type = $request->type;
         $property->purpose = $request->purpose;
         $property->room = $request->room;
@@ -266,7 +266,7 @@ class PropertyController extends Controller
         Property::findOrFail($id)->delete();
         return redirect()->back();
     }
-  
+
     public function getRegion(Request $request)
     {
         $regions = DB::table('regions')->where('city_id', $request->city_id)->get();
@@ -301,21 +301,28 @@ class PropertyController extends Controller
             return view('pages.alltype', compact('props'));
     }
 
-    public function get_by_city_type($type, $cityName,$purpose)
+    public function get_by_city_type($type, $purpose, $cityName)
     {
+        // dd("Parameters:", $type, $purpose, $cityName);
 
         $props = Property::with(['neighborhood.region.city'])
-        ->whereHas('neighborhood.region.city', function ($query) use ($cityName,$type,$purpose) {
-            $query->where('name', 'like', '%' . $cityName . '%')
-               ->where('type', 'like', '%' . $type . '%')
-               ->where('purpose', 'like', '%' . $purpose . '%')
-            ;
-        })
-        ->get();
+            ->whereHas('neighborhood.region.city', function ($query) use ($cityName) {
+                $query->where('name', 'like', '%' . $cityName . '%');
+            })
+            ->where('type', 'like', '%' . $type . '%')
+            ->where('purpose', 'like', '%' . $purpose . '%')
+            ->get();
+            if ($props->isEmpty()) {
+                return view('pages.flat', [
+                    'message' => 'لا توجد نتائج مطابقة للبحث',
+                    'props' => $props
+                ]);
+            }
 
         return view('pages.flat', compact('props'));
     }
-    
+
+
     public function search(Request $request)
     {
         $search=$request->search;
@@ -348,7 +355,7 @@ class PropertyController extends Controller
         //     $prop->unsetRelation('media');
         //     return $prop;
         // });
-     
+
         return view('pages.alltype',compact('props'));
     }
 

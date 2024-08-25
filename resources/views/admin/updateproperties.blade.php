@@ -1,3 +1,4 @@
+
 @extends('layouts.master')
 @section('content')
 <div class="card" style="width: 30rem; margin-left: 30%; margin-top: 140px;">
@@ -9,15 +10,7 @@
 <label for="" class="form-label" style="color: blue; font-size: 20px; text-align: center;"> تعديل العقار </label>
 <form action="  {{url('property/update',$data->id)}}" method="post" enctype="multipart/form-data">
  @csrf
-	<div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
-        <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">الاسم</label>
-        <input type="text" name="name"  class="form-control @error('name') is-invalid @enderror" style="background-color: white; color:black; text-align: end;" value="{{$data-> name}}" >
-        @error('name')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-     </div>
+
      <div class="row mb-3">
                             <label for="estate_image" class="form-label" style="margin-left: 400px;font-size: 20px;">الصورة</label>
 
@@ -36,7 +29,7 @@
                             <label for="estate_video" class="form-label" style="margin-left: 400px;font-size: 20px;">الفيديو</label>
 
                             <div class="col-md-6">
-                            <video src="{{URL::asset('/img/estate/'.$data->estate_video)}}" width="200px" style="margin-left: 120px;"></video>
+                            <video src="{{URL::asset('/img/estate/'.$data->estate_video)}}" width="200px" style="margin-left: 120px;"  controls muted></video>
 
                                 <input id="estate_video" type="file" class="form-control @error('estate_video') is-invalid @enderror" name="estate_video" style="background-color: white; margin-left: 120px;" >
                                 @error('estate_video')
@@ -45,7 +38,8 @@
                                 </span>
                             @enderror
 
-                            </div>
+
+</div>
                         </div>
                         <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">النوع</label>
@@ -65,6 +59,23 @@
         </span>
     @enderror
     </div>
+    <fieldset class="row mb-3" style="margin-left: 30px;">
+    <legend class="col-form-label col-sm-2 pt-0" style="text-align: right; max-width: 100%;">البناء مفحوص</legend>
+    <div class="col-sm-10">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="building_rank" id="gridRadios1" value="0" {{ old('building_rank', $data-> building_rank ) == 0 ? 'checked' : '' }}>
+            <label class="form-check-label" for="gridRadios1">
+                نعم
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="building_rank" id="gridRadios2" value="1" {{ old('building_rank', $data-> building_rank ) == 1 ? 'checked' : '' }}>
+            <label class="form-check-label" for="gridRadios2">
+                لا
+            </label>
+        </div>
+    </div>
+</fieldset>
 <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 380px;font-size: 20px;">عدد الغرف</label>
         <input type="number" name="room"  class="form-control @error('room') is-invalid @enderror" style="background-color: white; color:black; text-align: end;" value="{{$data-> room}}" >
@@ -113,7 +124,9 @@
 <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">الوجهة</label>
         <input type="text" name="direction"  class="form-control @error('direction') is-invalid @enderror" style="background-color: white; color:black; text-align: end;" value="{{$data-> direction}}" >
-        @error('direction')
+
+
+@error('direction')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
@@ -150,7 +163,8 @@
         <label for="" class="form-label" style="margin-left: 360px;font-size: 20px;">عدد المشاهدات</label>
         <input type="number" name="number_show"  class="form-control @error('number_show') is-invalid @enderror" style="background-color: white; color:black; text-align: end;" value="{{$data-> number_show}}" >
 
-    </div> -->
+
+</div> -->
     <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 380px;font-size: 20px;">سعر المتر</label>
         <input type="text" name="meter_price"  class="form-control @error('meter_price') is-invalid @enderror" style="background-color: white; color:black; text-align: end;" value="{{$data-> meter_price}}" >
@@ -188,19 +202,69 @@
     @enderror
     </div>
 
+    <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
+        <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">المدينة</label>
+        <select class="form-select @error('city_id') is-invalid @enderror" name="city_id" id="city" aria-label="Default select example" style="background-color: white; color:black; text-align: end;width: 450px;height: 35px;border-color: #ddd7d7;font-size: 20px;">
+            {{-- <option value="">-- اختر المدينة --</option> --}}
+  <option value="{{ $my_city->id }}" {{$my_city->id == $my_city->city_id ? 'selected' : ''}}>{{ $my_city->name }}</option>
+
+            @foreach ($cities as $city)
+                <option value="{{ $city->id }}" {{ $city->id == $data->city_id ? 'selected' : '' }}>{{ $city->name }}</option>
+            @endforeach
+        </select>
+        @error('city_id')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="form-group mb-3" style="margin-left: 10px; margin-right: 10px;">
+        <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">المنطقة</label>
+        <select id="region" name="region_id" class="form-control @error('region_id') is-invalid @enderror" style="background-color: white; color:black; text-align: end;width: 450px;height: 35px;border-color: #ddd7d7;font-size: 20px;">
+            {{-- <option value="">-- اختر المنطقة --</option> --}}
+  <option value="{{ $my_region->id }}" {{$my_region->id == $my_region->region_id ? 'selected' : ''}}>{{ $my_region->name }}</option>
+
+
+<!-- سيتم تحميل الخيارات هنا باستخدام AJAX -->
+        </select>
+        @error('region_id')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="form-group" style="margin-left: 10px; margin-right: 10px;">
+        <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">الحي</label>
+        <select id="neighborhood" name="neighborhood_id" class="form-control @error('neighborhood_id') is-invalid @enderror" style="background-color: white; color:black; text-align: end;width: 450px;height: 35px;border-color: #ddd7d7;font-size: 20px;">
+            {{-- <option value="">-- اختر الحي --</option> --}}
+  <option value="{{ $my_neighborhood->id }}" {{$my_neighborhood->id == $my_neighborhood->neighborhood_id ? 'selected' : ''}}>{{ $my_neighborhood->name }}</option>
+
+            <!-- سيتم تحميل الخيارات هنا باستخدام AJAX -->
+        </select>
+        @error('neighborhood_id')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+
+
 
 
 <div class="mb-3" style="margin-left: 10px; margin-right: 10px;">
         <label for="" class="form-label" style="margin-left: 400px;font-size: 20px;">المالك</label>
-        <select class="form-select @error('owner_id') is-invalid @enderror" name="owner_id" id="owner_id" aria-label="Default select example" style="background-color: white; color:black; text-align: end;width: 450px;height: 35px;border-color: #ddd7d7;font-size: 20px;" >
+        <select class="form-select @error('user_id') is-invalid @enderror" name="user_id" id="user_id" aria-label="Default select example" style="background-color: white; color:black; text-align: end;width: 450px;height: 35px;border-color: #ddd7d7;font-size: 20px;" >
         <option selected></option>
-        @foreach ($owners as $owner)
-  <option value="{{ $owner->id }}" {{$owner ->id == $data-> owner_id ? 'selected' : ''}}>{{ $owner->name }}</option>
+        @foreach ($users as $user)
+  <option value="{{ $user->id }}" {{$user ->id == $data-> user_id ? 'selected' : ''}}>{{ $user->name }}</option>
   @endforeach
 
 
 </select>
-@error('owner_id')
+@error('user_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -212,56 +276,74 @@
 
 
 
-	<button type="submit" class="btn btn-sm btn-primary" style=" background-color:#406a98;margin-left: 20%; margin-bottom: 20px; font-size: 20px;">تعديل العقار</button>
+  <button type="submit" class="btn btn-sm btn-primary" style=" background-color:#406a98;margin-left: 20%; margin-bottom: 20px; font-size: 20px;">تعديل العقار</button>
     <a  href="{{url('dashboardd')}}"class="btn btn-light" style=" margin-bottom: 20px; font-size: 20px;color: #918686;">العودة إلى لوحة التحكم </a>
 
 
 </form>
 </div>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
 
 
-            $('#city').on('change', function () {
-                var cityid = this.value;
-                $("#region").html('');
-                $.ajax({
-                    url: "{{route('getRegion')}}?city_id="+cityid,
-                    type: "get",
-
-                    success: function (result) {
-                        $('#region').html('<option value="">-- اختر المنطقة --</option>');
-                        $.each(result, function (key, value) {
-                            $("#region").append('<option value="' + value
-                                .id + '">' + value.name + '</option>');
-                        });
-                        $('#neighborhood').html('<option value="">-- اختر الحي --</option>');
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function loadRegions(cityid, selectedRegionId = null) {
+            $.ajax({
+                url: "{{ route('getRegion') }}?city_id=" + cityid,
+                type: "get",
+                success: function (result) {
+                    $('#region').html('<option value="">-- اختر المنطقة --</option>');
+                    $.each(result, function (key, value) {
+                        let selected = (value.id == selectedRegionId) ? 'selected' : '';
+                        $('#region').append('<option value="' + value.id + '" ' + selected + '>' + value.name + '</option>');
+                    });
+                    if (selectedRegionId) {
+                        $('#region').trigger('change');
                     }
-                });
+                }
             });
+        }
 
-
-            $('#region').on('change', function () {
-                var regionid = this.value;
-                $("#neighborhood").html('');
-                $.ajax({
-                    url:  "{{route('getneighborhood')}}?region_id="+regionid,
-                    type: "get",
-
-                    success: function (res) {
-                        $('#neighborhood').html('<option value="">-- اختر الحي --</option>');
-                        $.each(res, function (key, value) {
-                            $("#neighborhood").append('<option value="' + value
-                                .id + '">' + value.name + '</option>');
-                        });
-                    }
-                });
+        function loadNeighborhoods(regionid, selectedNeighborhoodId = null) {
+            $.ajax({
+                url: "{{ route('getneighborhood') }}?region_id=" + regionid,
+                type: "get",
+                success: function (res) {
+                    $('#neighborhood').html('<option value="">-- اختر الحي --</option>');
+                    $.each(res, function (key, value) {
+                        let selected = (value.id == selectedNeighborhoodId) ? 'selected' : '';
+                        $('#neighborhood').append('<option value="' + value.id + '" ' + selected + '>' + value.name + '</option>');
+                    });
+                }
             });
+        }
 
+
+// تحميل البيانات عند فتح الصفحة
+        let cityId = "{{ $data->city_id }}";
+        let regionId = "{{ $data->region_id }}";
+        let neighborhoodId = "{{ $data->neighborhood_id }}";
+
+        if (cityId) {
+            loadRegions(cityId, regionId);
+        }
+
+        if (regionId) {
+            loadNeighborhoods(regionId, neighborhoodId);
+        }
+
+        // تحميل البيانات عند تغيير المدينة
+        $('#city').on('change', function () {
+            var cityid = this.value;
+            loadRegions(cityid);
         });
-    </script> -->
 
-
+        // تحميل البيانات عند تغيير المنطقة
+        $('#region').on('change', function () {
+            var regionid = this.value;
+            loadNeighborhoods(regionid);
+        });
+    });
+</script>
 
 @endsection

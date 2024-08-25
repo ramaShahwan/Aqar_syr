@@ -16,7 +16,6 @@
            $property->save();
    
            return $this->apiResponse($property, 'ok', 200);
-
  }
 
      public function get_by_city($cityName)
@@ -29,7 +28,7 @@
            ->get();
    
            return $this->apiResponse($props, 'ok', 200);
- }
+   }
    
        public function get_by_city_type($type, $cityName,$purpose)
     {
@@ -49,16 +48,15 @@
        public function search(Request $request)
      {
            $search=$request->search;
-           $props = Property::with('owner','neighborhood','neighborhood.region.city','neighborhood.region')->
+           $props = Property::with('user','neighborhood','neighborhood.region.city','neighborhood.region')->
            when($search, function ($query, $search)
-           {$query->where('name','like','%'.$search.'%')
-                  ->orWhere('type','like','%'.$search.'%')
+           {$query->Where('type','like','%'.$search.'%')
                   ->orWhere('purpose','like','%'.$search.'%')
                   ->orWhere('state','like','%'.$search.'%')
                   ->orWhere('space','like','%'.$search.'%')
                   ->orWhere('direction','like','%'.$search.'%')
                   ->orWhere('license','like','%'.$search.'%')
-                  ->orWhereHas('owner', function ($query) use ($search) {
+                  ->orWhereHas('user', function ($query) use ($search) {
                    $query->where('name', 'like', '%'.$search.'%');})
                   ->orWhereHas('neighborhood', function ($query) use ($search) {
                    $query->where('name', 'like', '%'.$search.'%');})

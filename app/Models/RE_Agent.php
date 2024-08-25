@@ -13,10 +13,10 @@ class RE_Agent extends Model
     protected $guarded=[];
     protected $table = 're_agents';
 
-    public function neighborhoods()
+    public function neighborhood()
     {
-        return $this->hasMany(Neighborhood::class);
+        return $this->belongsTo(Neighborhood::class);
     }
 
- 
+
 }

@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Property;
 use App\Models\Temp;
 
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-      $usrs = User::all();
+      $users = User::all();
          // $search=$request->search;
          // $users = User::when($search, function ($query, $search)
          // {$query->where('name','like','%'.$search.'%')
@@ -39,7 +39,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
+    {
         $validated = $request->validate([
             'name' => 'required',
             'phone' => ['required',' min:10 ','max:14', 'unique:'.User::class],
@@ -87,13 +87,13 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'phone' => ['required',' min:10 ','max:14'],
-            'password'=>'required',
+            // 'password'=>'required',
             'role'=>'required',
           ]);
-        
+
                $user = User::findOrFail($request->id);
                 $user->name = $request->name;
-                $user->password = $request->password;
+                // $user->password = $request->password;
                 $user->phone = $request->phone;
                 $user->role = $request->role;
                 $user->update();

@@ -49,8 +49,15 @@
   <body>
 
 
-		<div class="wrapper d-flex  align-items-stretch justify-content-between" style=" position: fixed; top:100px;
-   right: -1070px;">
+		<div class="wrapper d-flex  align-items-stretch justify-content-between" style="     position: fixed;
+    height: 100%;
+    width: 300px;
+    right: 0;
+    bottom: 0;
+    top: 100px;
+    z-index: 100;
+
+    transition: left 300ms;">
 			<nav id="sidebar" class="order-last" class="img" style="    overflow-y: scroll;
     height: 540px;" >
 				<div class="" >
@@ -92,16 +99,21 @@
 
 	          </li>
               <li>
-                    <a href="{{ route('owner') }}" class="nav-item nav-link"  style="text-align: end; font-size: 20px;">  المالك  <i class="fa fa-user"></i></a>
+                    <a href="{{ route('users') }}" class="nav-item nav-link"  style="text-align: end; font-size: 20px;">  المستخدمين  <i class="fa fa-user"></i></a>
 
 
 	          </li>
               <li>
-                <a class="sub-btn tt" style=" font-size: 18px; text-align: end;    margin: 0px; " ><i class="fas fa-angle-left dropdown"style="margin-right: 110px;"></i> طلبات العقارات </a>
+                    <a href="{{ route('agents') }}" class="nav-item nav-link"  style="text-align: end; font-size: 20px;">  الوكلاء العقاريين  <i class="fa fa-user"></i></a>
+
+
+	          </li>
+              <li>
+                <a class="sub-btn tt" style=" font-size: 18px; text-align: end;    margin: 0px; " ><i class="fas fa-angle-left dropdown"style="margin-right: 60px;"></i> طلبات العقارات <i class="fa fa-building"></i></a>
                 <div class="sub-menu">
-                    <a href="{{ route('pending_requests') }}"style="font-size: 18px; text-align: end;   margin: 0px;" class="sub-item tt">طلبات معلقة  <i class="fa fa-house"></i></a>
-                    <a href="{{ route('requests_accepted') }}" class="sub-item tt" style="font-size: 18px; text-align: end;  margin: 0px;">طلبات مقبولة  <i class="fa fa-house"></i></a>
-                    <a href="{{ route('requests_rejected') }}" class="sub-item tt" style="font-size: 18px;text-align: end;     margin: 0px;"> طلبات مرفوضة <i class="fa fa-house"></i></a>
+                    <a href="{{ route('getPendEstateForAdmin') }}"style="font-size: 18px; text-align: end;   margin: 0px;" class="sub-item tt">طلبات معلقة  <i class="fa fa-house"></i></a>
+                    <a href="{{ route('getAcceptEstateForAdmin') }}" class="sub-item tt" style="font-size: 18px; text-align: end;  margin: 0px;">طلبات مقبولة  <i class="fa fa-house"></i></a>
+                    <a href="{{ route('getCancleEstateForAdmin') }}" class="sub-item tt" style="font-size: 18px;text-align: end;     margin: 0px;"> طلبات مرفوضة <i class="fa fa-house"></i></a>
                 </div>
 	          </li>
  <li>

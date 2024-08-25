@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use App\Models\Region;
 use App\Models\Property;
+use App\Models\RE_Agent;
 
 class Neighborhood extends Model
 {
@@ -33,5 +34,10 @@ class Neighborhood extends Model
     {
         return $this->hasMany(Temp::class);
     }
+    public function re_agents()
+    {
+        return $this->hasMany(RE_Agent::class);
+    }
+
 
 }

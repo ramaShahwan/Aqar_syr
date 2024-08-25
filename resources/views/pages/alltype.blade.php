@@ -1,7 +1,7 @@
 @extends('layout.master')
 @section('content')
 <!-- Home -->
-
+{{$cityName = session('selected_city')}}
 <div class="home">
 		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{{asset('images/elements.jpg')}}" data-speed="0.8"></div>
 		<div class="home_container">
@@ -9,7 +9,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="home_content d-flex flex-row align-items-end justify-content-start">
-							<div class="home_title">عقارات مدينة </div>
+							<div class="home_title" style="color: #FFFFFF;">عقارات مدينة </div>
 
 						</div>
 					</div>
@@ -20,62 +20,48 @@
 
 	<!-- Home Search -->
 	<div class="home_search">
+
+
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<div class="home_search_container">
 						<div class="home_search_content">
-							<form action="#" class="search_form d-flex flex-row align-items-start justfy-content-start">
-								<div class="search_form_content d-flex flex-row align-items-start justfy-content-start flex-wrap">
-									<!-- <div>
-										<select class="search_form_select">
-											<option disabled selected>اختار المدينة</option>
-											<option>Yes</option>
-											<option>No</option>
-										</select>
-									</div>
-									<div>
-										<select class="search_form_select">
-											<option disabled selected>اختار المنطقة</option>
-											<option>Type 1</option>
-											<option>Type 2</option>
-											<option>Type 3</option>
-											<option>Type 4</option>
-										</select>
-									</div>
-									<div>
-										<select class="search_form_select">
-											<option disabled selected>اختار الحي</option>
-											<option>New York</option>
-											<option>Paris</option>
-											<option>Amsterdam</option>
-											<option>Rome</option>
-										</select>
-									</div> -->
-									<div>
-										<select class="search_form_select">
-											<option disabled selected style="direction: rtl;">اختار نوع العقار</option>
-											<option style="direction: rtl;">شقة</option>
-											<option style="direction: rtl;">فيلا</option>
-											<option style="direction: rtl;">أرض</option>
-											<option style="direction: rtl;">محل</option>
-											<option style="direction: rtl;">مكتب</option>
-											<option style="direction: rtl;">(شاليه - مزرعة ) استراحة</option>
-											<option style="direction: rtl;">غرفة</option>
-											<option style="direction: rtl;">صالة</option>
-										</select>
-									</div>
-									<div>
-										<select class="search_form_select">
-											<option disabled selected style="direction: rtl;">اختار الغاية من العقار</option>
-											<option style="direction: rtl;">ايجار</option>
-											<option style="direction: rtl;">بيع</option>
-											<option >رهن</option>
-										</select>
-									</div>
-								</div>
-								<button class="search_form_button ml-auto">بحث</button>
-							</form>
+                        <!-- <p>المدينة المختارة: {{ session('selected_city') }}</p> -->
+                        <form id="searchForm" method="GET" class="search_form d-flex flex-row align-items-start justify-content-start">
+    <div class="search_form_content d-flex flex-row align-items-start justify-content-start flex-wrap">
+        <div>
+            <select class="search_form_select serct pp" id="type" name="type" required>
+                <option disabled selected style="direction: rtl;">اختار نوع العقار</option>
+                <option style="direction: rtl;" value="شقة">شقة</option>
+                <option style="direction: rtl;" value="فيلا">فيلا</option>
+                <option style="direction: rtl;" value="أرض">أرض</option>
+                <option style="direction: rtl;" value="محل">محل</option>
+                <option style="direction: rtl;" value="مكتب">مكتب</option>
+                <option style="direction: rtl;" value="استراحة">استراحة</option>
+                <option style="direction: rtl;" value="غرفة">غرفة</option>
+                <option style="direction: rtl;" value="صالة">صالة</option>
+            </select>
+        </div>
+        <div>
+            <select class="search_form_select serct pp" id="purpose" name="purpose" required>
+                <option disabled selected style="direction: rtl;">اختار الغاية من العقار</option>
+                <option style="direction: rtl;" value="ايجار">ايجار</option>
+                <option style="direction: rtl;" value="بيع">بيع</option>
+                <option style="direction: rtl;" value="رهن">رهن</option>
+            </select>
+        </div>
+        <div>
+            <input type="hidden" id="cityName" name="cityName" value="{{ session('selected_city') }}">
+        </div>
+    </div>
+    <button type="submit" class="search_form_button ml-auto serct pp">بحث</button>
+</form>
+
+
+
+
+
 						</div>
 					</div>
 				</div>
@@ -100,16 +86,16 @@
 					<div class="property">
 						<div class="property_image">
 							<img src="{{URL::asset('/img/estate/'.$call->estate_image)}}" alt="">
-							<div class="tag_featured property_tag"><a href="{{url('property/show', $call->id)}}">المزيد من التفاصيل</a></div>
+							<div class="tag_featured property_tag pp"><a href="{{url('property/show', $call->id)}}">المزيد من التفاصيل</a></div>
 						</div>
-						<div class="property_body text-center">
+						<div class="property_body text-center pp">
 							<div class="property_location">{{$call->name}}</div>
-							<div class="property_title"><a href="property.html">{{$call->purpose}}</a></div>
-							<div class="property_title"><a href="property.html">{{$call->neighborhood->region->name}}</a></div>
+							<div class="property_title"><a href="{{url('property/show', $call->id)}}">{{$call->purpose}}</a></div>
+							<div class="property_title"><a href="{{url('property/show', $call->id)}}">{{$call->neighborhood->region->name}}</a></div>
 							<div class="property_price">{{$call->price}}</div>
 						</div>
 						@if($call->type != 'غرفة' && $call->type != 'محل'  && $call->type != 'أرض')
-						<div class="property_footer d-flex flex-row align-items-center justify-content-start">
+						<div class="property_footer d-flex flex-row align-items-center justify-content-start pp">
 							<div><div class="property_icon"><img src="{{asset('images/icon_1.png')}}" alt=""></div><span>{{$call->space}}</span></div>
 							<div><div class="property_icon"><img src="{{asset('images/icon_2.png')}}" alt=""></div><span>{{$call->room}} Rooms</span></div>
 							<div><div class="property_icon"><img src="{{asset('images/icon_3.png')}}" alt=""></div><span>{{$call->bathroom}} Bathrooms</span></div>
@@ -142,5 +128,20 @@
 	</div>
 
 	<!-- Newsletter -->
+    <script>
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var type = document.getElementById('type').value;
+    var purpose = document.getElementById('purpose').value;
+    var cityName = document.getElementById('cityName').value;
+
+    console.log("Type:", type);
+    console.log("Purpose:", purpose);
+    console.log("City Name:", cityName);
+
+    var url = `/property/get_by_city_type/${type}/${purpose}/${cityName}`;
+    window.location.href = url;
+});
+</script>
 
 @endsection

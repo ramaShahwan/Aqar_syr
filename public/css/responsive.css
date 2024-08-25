@@ -113,11 +113,12 @@
 {
 	.header_content
 	{
-		height: 80px;
+		/* height: 80px; */
 	}
 	.main_nav
 	{
-		display: none;
+		/* display: none; */
+        margin-top: 20px;
 	}
 	.phone_num
 	{
@@ -253,7 +254,7 @@
 	}
 	.header_content
 	{
-		height: 60px;
+		/* height: 60px; */
 	}
 	.menu_close_container
 	{

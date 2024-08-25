@@ -1,7 +1,28 @@
 @extends('layout.master')
 @section('content')
-<!-- Intro -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+<!-- Intro -->
+<style>
+        .favorite-button {
+    display: flex;
+    align-items: center;
+    padding: 7px;
+    border: none;
+    background-color: #f1f1f1;
+    color: #333;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+.favorite-button i {
+    margin-right: 5px; /* تباعد بين الأيقونة والنص */
+    font-size: 1.2rem; /* حجم الأيقونة */
+    color: red; /* لون الأيقونة */
+}
+
+    </style>
 <div class="intro" style="    margin-top: 30px;">
 		<div class="container">
 			<div class="row">
@@ -167,11 +188,29 @@
                                     @endif
 									<li><span>اتجاه :</span>{{$property->location}}</li>
 									<li><span>الوجهة :</span>{{$property->direction}}</li>
-									<li><span>الامان :</span>العقار مفحوص من قبل شركة بيلدينغ رانك</li>
+                                    @if(  $property->building_rank === 0)
+									<li><img src="{{asset('images/Untitled-1.png')}}" alt="" style="    width: 80px;"><span>الامان :</span>العقار مفحوص من قبل شركة بيلدينغ رانك
+
+                                </li>
+                                    @endif
 									<li><span>موقع العقار :</span>{{$property->neighborhood->region->name}} - {{$property->neighborhood->name}}</li>
 									<li><span>مميزات العقار :</span> {{$property->features}}</li>
 									<li><span> الهاتف :</span> 0966333221</li>
 									<li><span>info@proengaqar.com :</span> البريد الالكتروني </li>
+                                    <!-- <li style="display: inline;">
+    <a id="favorite-icon" class="btn btn-sm btn-primary" href="javascript:void(0);" style="width: 90px; background-color:#28a745">
+        <i id="heart-icon" class="fa fa-heart-o"></i>
+
+    </a>
+</li> -->
+<li><form action='{{ url("setFav", $property->id) }}' method="post">
+    @csrf
+    <!-- <input type="submit" value="اضافة للمفضلة" style="    padding: 7px;"> -->
+    <button id="favorite-button" class="favorite-button" type="submit" >
+        <i id="heart-icon" class="fa-heart far"></i>
+        <span>اضافة للمفضلة</span>
+    </button>
+</form></li>
 								</ul>
 							</div>
 						</div>
@@ -201,4 +240,36 @@
 	</div>
 
 	<!-- Newsletter -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const heartIcon = document.getElementById('heart-icon');
+    const favoriteButton = document.getElementById('favorite-button');
+
+    favoriteButton.addEventListener('click', () => {
+        if (heartIcon.classList.contains('far')) {
+            heartIcon.classList.remove('far');
+            heartIcon.classList.add('fas');
+            // قم بتخزين الحالة في localStorage أو في متغير لجعل التغيير دائم حتى يتم الضغط مرة أخرى
+            localStorage.setItem('favorited', 'true');
+        } else {
+            heartIcon.classList.remove('fas');
+            heartIcon.classList.add('far');
+            localStorage.setItem('favorited', 'false');
+        }
+    });
+
+    // تعيين الحالة الأولية عند تحميل الصفحة
+    if (localStorage.getItem('favorited') === 'true') {
+        heartIcon.classList.remove('far');
+        heartIcon.classList.add('fas');
+    } else {
+        heartIcon.classList.remove('fas');
+        heartIcon.classList.add('far');
+    }
+});
+
+</script>
 @endsection
+
+
+<!--  -->

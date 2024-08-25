@@ -36,7 +36,7 @@ background-attachment: fixed;
             }
             .imgre{
         width: 410px;
-        height: 400px;
+        height: 300px;
         margin-top: 60px;
 
     }
@@ -140,13 +140,13 @@ background-attachment: fixed;
                             <label for="password" >{{ __('كلمة المرور') }}</label>
 
 
-                                <input id="password" type="password" style="text-align: end;" placeholder="Your Password" class="form-control " name="password" required  style="background-color: #cdeef5">
+                                <input id="password" type="password" style="text-align: end;" placeholder="ادخل كلمة السر" class="form-control " name="password" required  style="background-color: #cdeef5">
 
 
 
                         </div>
 
-                        <div class=" mb-5 " style="text-align:end;">
+                        <div class=" mb-5 " style="    float: right;">
 
 
                         <!-- <input class="form-check-input" type="checkbox" name="remember" id="remember" style="background-color: var(--bs-gray-500)">
@@ -159,8 +159,8 @@ background-attachment: fixed;
 
 
 
-                                    <span class="ml-auto">
-                                        <a class="forgot-pass" href="#" style="color: #888e93; font-size: 14px">
+                                    <span class="ml-auto" style="    float: right;">
+                                        <a class="forgot-pass" href="#" style="color: #888e93; font-size: 14px ;float: right;    ">
                                         {{ __('تغيير كلمة السر؟') }}
                                     </a>
                                     </span>

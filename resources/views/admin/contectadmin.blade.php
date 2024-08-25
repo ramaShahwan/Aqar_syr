@@ -7,7 +7,7 @@
    <div style="padding-top: 100px;">
 
    <div class="container-fluid pt-4 px-4">
-                <div class="bg-light text-center rounded p-4">
+                <div class="bg-light text-center rounded p-4" style="width:1000px;">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <li class="nav-item dropdown d-none d-sm-flex">
 
@@ -29,7 +29,7 @@
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 300px;">الأحداث</th>
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 300px;">الرسالة</th>
 
-                                    <th scope="col" style="text-align: center;font-size: 20px; width: 300px;">البريد الالكتروني</th>
+                                    <th scope="col" style="text-align: center;font-size: 20px; width: 300px;">رقم الهاتف </th>
                                     <th scope="col" style="text-align: center;font-size: 20px; width: 300px;">الاسم</th>
                                 </tr>
                             </thead>
@@ -40,7 +40,7 @@
                                 <td style="text-align: center;font-size: 20px;"><a class="btn btn-sm btn-danger" onclick="return confirm('هل تريد الحذف')" href="{{url('contact/destroy',$calll->id)}}" style="width: 90px;">حذف</a>
                                     </td>
                                     <td style="text-align: center;font-size: 20px;">{{$calll->message}}</td>
-                                    <td style="text-align: center;font-size: 20px;">{{$calll->email}}</td>
+                                    <td style="text-align: center;font-size: 20px;">{{$calll->phone}}</td>
                                     <td style="text-align: center;font-size: 20px;">{{$calll->name}}</td>
                                 </tr>
                                 @endforeach

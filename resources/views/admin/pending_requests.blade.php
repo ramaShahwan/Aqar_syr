@@ -1,5 +1,5 @@
-@extends('layoutadmin.master')
-@section('contentadmin')
+@extends('layouts.master')
+@section('content')
 <div class="container-xxl position-relative bg-white d-flex p-0">
 
 
@@ -10,6 +10,11 @@
                 <div class="bg-light text-center rounded p-4" style="width:1000px;">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                     <li class="nav-item dropdown d-none d-sm-flex">
+                    @if(session()->has('message'))
+        <div class="alert alert-info" role="alert" style="text-align:end;font-size: 20px; ">
+          {{session()->get('message')}}
+        </div>
+@endif
 
                  <!-- <a class="btn btn-sm btn-primary" href="{{url('addowner')}}" style="width: 100px;font-size: 20px;    background-color:#406a98">إضافة مالك</a> -->
 
@@ -39,15 +44,16 @@
 
 
                                 <tr>
-
+                                @foreach($estates as $call)
                                     <td style="text-align: center;font-size: 20px;">
-                                    <a class="btn btn-sm btn-primary" href="{{ route('allshowpending_requ') }}" style="width: 90px;    background-color:#28a745">التفاصيل</a></td>
-                                    <td style="text-align: center;font-size: 20px;">100م</td>
-                                    <td style="text-align: center;font-size: 20px;">بيع </td>
-                                    <td style="text-align: center;font-size: 20px;"> <img src="images/city_1.jpg"  width="100px"></td>
-                                    <td style="text-align: center;font-size: 20px;"> شقة</td>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('getPendDetails',$call->id)}}" style="width: 90px;    background-color:#28a745">التفاصيل</a></td>
+                                    <td style="text-align: center;font-size: 20px;">{{$call->space}}</td>
+                                    <td style="text-align: center;font-size: 20px;">{{$call->purpose}} </td>
+                                    <td style="text-align: center;font-size: 20px;"> <img src="{{URL::asset('/img/temp/'.$call->estate_image)}}"  width="100px"></td>
+                                    <td style="text-align: center;font-size: 20px;"> {{$call->type}}</td>
 
                                 </tr>
+                                @endforeach
 
 
 

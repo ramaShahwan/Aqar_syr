@@ -140,7 +140,7 @@ background-attachment: fixed;
                             <label for="password" >{{ __('كلمة المرور') }}</label>
 
 
-                                <input id="password" type="password" style="text-align: end;" placeholder="Your Password" class="form-control " name="password" required  style="background-color: #cdeef5">
+                                <input id="password" type="password" style="text-align: end;" placeholder="ادخل كلمة السر" class="form-control " name="password" required  style="background-color: #cdeef5">
 
 
 
@@ -154,7 +154,7 @@ background-attachment: fixed;
                                     </a>
                                     </span>
                         </div> -->
-                        <div class="flex items-center justify-end mt-4">
+                        <div class="flex items-center justify-end mt-4" style="float: right;">
             @if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                 {{ __('تغيير كلمة السر؟') }}
