@@ -6,6 +6,11 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CityAPIController;
 use App\Http\Controllers\Api\ContactAPIController;
 use App\Http\Controllers\Api\PropertyAPIController;
+use App\Http\Controllers\Api\TempAPIController;
+use App\Http\Controllers\Api\FavAPIController;
+use App\Http\Controllers\Api\RE_AgentAPIController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -50,6 +55,8 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
 
+
+
 //send with token
 Route::group(['middleware' => ['jwt.verify']], function() {
 
@@ -64,7 +71,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('/setFav/{id}', [FavAPIController::class, 'setFav']);
     Route::get('/getFav', [FavAPIController::class, 'getFav']);
 
-    Route::post('/show', [RE_AgentAPIController::class, 'show']);
-    Route::get('/Advancedsearch', [RE_AgentAPIController::class, 'getFav']);
+    Route::get('/show_agents', [RE_AgentAPIController::class, 'show_agents']);
+    Route::get('/Advancedsearch', [RE_AgentAPIController::class, 'Advancedsearch']);
     });
 
