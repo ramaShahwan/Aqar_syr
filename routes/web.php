@@ -254,6 +254,7 @@ Route::get('create', [TempController::class, 'create'])->name('addmyproperties')
 Route::post('storeTempEstate', [TempController::class, 'storeTempEstate'])->name('storeTempEstate');
 Route::get('property/show/{id}', [PropertyController::class, 'show']);
 Route::get('getFav', [FavController::class, 'getFav'])->name('getFav');
+Route::get('isFavorited/{property}', [FavController::class, 'isFavorited']);
 Route::post('setFav/{id}', [FavController::class, 'setFav'])->name('setFav');
 });
 

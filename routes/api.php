@@ -69,6 +69,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('/getMyEstate', [TempAPIController::class, 'getMyEstate']);
 
     Route::post('/setFav/{id}', [FavAPIController::class, 'setFav']);
+    Route::get('isFavorited/{property}', [FavAPIController::class, 'isFavorited']);
     Route::get('/getFav', [FavAPIController::class, 'getFav']);
 
     Route::get('/show_agents', [RE_AgentAPIController::class, 'show_agents']);
