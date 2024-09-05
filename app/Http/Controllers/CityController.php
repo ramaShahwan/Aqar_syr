@@ -55,7 +55,7 @@ class CityController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'city_image' => 'required',
+            // 'city_image' => 'required',
           ]);
 
        $city = City::findOrFail($request->id);

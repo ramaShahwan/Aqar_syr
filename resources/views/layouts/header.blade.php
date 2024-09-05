@@ -9,7 +9,7 @@
 							<a href="#"><img src="{{asset('images/tt.png')}}" alt=""  height="100px"></a>
 						</div>
 						<nav class="main_nav" >
-							<ul>
+							<ul style="margin-bottom: 0;">
                             @if(auth()->check() && auth()->user()->role === 'admin')
     <li><a href="{{ route('dashboardd') }}">لوحة التحكم</a></li>
 @endif
@@ -28,7 +28,7 @@
                             <li><a href="{{url('show')}}">الوكلاء العقاريين</a></li>
                             <li><a href="{{url('getMyEstate')}}">طلب عقاري</a></li>
 
-                          
+
                             <li><a href="{{route('about')}}">من نحن</a></li>
                             <li class="active"><a href="{{route('home')}}">الرئيسية</a></li>
 

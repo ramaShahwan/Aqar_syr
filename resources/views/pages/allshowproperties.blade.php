@@ -203,14 +203,23 @@
 
     </a>
 </li> -->
-<li><form action='{{ url("setFav", $property->id) }}' method="post">
+<li>
+    <!-- <form action='{{ url("setFav", $property->id) }}' method="post">
     @csrf
-    <!-- <input type="submit" value="اضافة للمفضلة" style="    padding: 7px;"> -->
+
     <button id="favorite-button" class="favorite-button" type="submit" >
         <i id="heart-icon" class="fa-heart far"></i>
         <span>اضافة للمفضلة</span>
     </button>
-</form></li>
+</form> -->
+<form action='{{ url("setFav", $property->id) }}' method="post" id="favorite-form">
+    @csrf
+    <button id="favorite-button" class="favorite-button" type="button">
+        <i id="heart-icon" class="fa-heart far"></i>
+        <span>اضافة للمفضلة</span>
+    </button>
+</form>
+</li>
 								</ul>
 							</div>
 						</div>
@@ -240,7 +249,7 @@
 	</div>
 
 	<!-- Newsletter -->
-    <script>
+    <!-- <script>
     document.addEventListener('DOMContentLoaded', () => {
     const heartIcon = document.getElementById('heart-icon');
     const favoriteButton = document.getElementById('favorite-button');
@@ -249,7 +258,7 @@
         if (heartIcon.classList.contains('far')) {
             heartIcon.classList.remove('far');
             heartIcon.classList.add('fas');
-            // قم بتخزين الحالة في localStorage أو في متغير لجعل التغيير دائم حتى يتم الضغط مرة أخرى
+
             localStorage.setItem('favorited', 'true');
         } else {
             heartIcon.classList.remove('fas');
@@ -258,7 +267,7 @@
         }
     });
 
-    // تعيين الحالة الأولية عند تحميل الصفحة
+
     if (localStorage.getItem('favorited') === 'true') {
         heartIcon.classList.remove('far');
         heartIcon.classList.add('fas');
@@ -268,7 +277,51 @@
     }
 });
 
+</script> -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const heartIcon = document.getElementById('heart-icon');
+    const favoriteButton = document.getElementById('favorite-button');
+    const propertyId = "{{ $property->id }}"; // ID العقار
+
+    // تحقق من حالة المفضلة عند تحميل الصفحة
+    fetch(`/isFavorited/${propertyId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.isFavorited) {
+                heartIcon.classList.remove('far');
+                heartIcon.classList.add('fas');
+            } else {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far');
+            }
+        });
+
+    // عند النقر على زر المفضلة
+    favoriteButton.addEventListener('click', () => {
+        fetch(`/setFav/${propertyId}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.isFavorited) {
+                heartIcon.classList.remove('far');
+                heartIcon.classList.add('fas');
+            } else {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far');
+            }
+        });
+    });
+});
 </script>
+
+
+
 @endsection
 
 

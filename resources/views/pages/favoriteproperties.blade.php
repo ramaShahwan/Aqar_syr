@@ -2,7 +2,7 @@
 @section('content')
 <!-- Properties -->
 
-<div class="properties">
+<div class="properties" style="direction: rtl;">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -27,8 +27,8 @@
 							<div class="property_title"><a href="#">{{$fav->properties->neighborhood->region->name}}</a></div>
 							<div class="property_price">{{$fav->properties->price}}</div>
 						</div>
-						<div class="property_footer d-flex flex-row align-items-center justify-content-start">
-							<div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>{{$fav->properties->space}} Ftsq</span></div>
+						<div class="property_footer d-flex flex-row align-items-center justify-content-start" style="    direction: ltr;">
+							<div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>{{$fav->properties->space}} </span></div>
 							<div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>{{$fav->properties->room}} Rooms</span></div>
 							<div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>{{$fav->properties->bathroom}} Bathrooms</span></div>
 						</div>

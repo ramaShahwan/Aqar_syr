@@ -7,10 +7,10 @@
 			<div class="row">
 				<div class="col">
 					<div class="section_title"><a href="{{route('addmyproperties')}}" class="addper">إضافة عقار</a> </div>
-					<div class="section_title"><a href="{{url('getFav')}}" class="foper">عقاراتي المفضلة</a>   </div>
+					<div class="section_title "><a href="{{url('getFav')}}" class="foper">عقاراتي المفضلة</a>   </div>
 				</div>
 			</div>
-			<div class="row properties_row">
+			<div class="row properties_row" style="direction: rtl;">
 
 				<!-- Property -->
                 @if($pended->isNotEmpty())
@@ -18,14 +18,14 @@
 				<div class="col-xl-4 col-lg-6 property_col">
 					<div class="property">
 						<div class="property_image">
-							<img src="images/ارمان-حلب-تخت-دوت-كوم-2.jpg" alt="">
-							<div class="tag_featured property_tag"><a href="#">  معلق</a></div>
+							<img src="{{URL::asset('/img/temp/'.$pendeds->estate_image)}}" alt="">
+							<div class="tag_featured property_tag pp"><a href="#">  معلق</a></div>
 						</div>
 						<div class="property_body text-center">
-							<div class="property_location">{{$pendeds->type}}</div>
-							<div class="property_title"><a href="#">{{$pendeds->purpose}}</a></div>
-							<div class="property_title"><a href="#">{{$pendeds->neighborhood->region->name}}</a></div>
-							<div class="property_price">{{$pendeds->price}}</div>
+							<div class="property_location pp">{{$pendeds->type}}</div>
+							<div class="property_title pp"><a href="#">{{$pendeds->purpose}}</a></div>
+							<div class="property_title pp"><a href="#">{{$pendeds->neighborhood->region->name}}</a></div>
+							<div class="property_price pp">{{$pendeds->price}}</div>
 						</div>
 						<!-- <div class="property_footer d-flex flex-row align-items-center justify-content-start">
 							<div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Ftsq</span></div>
@@ -46,16 +46,16 @@
 				<div class="col-xl-4 col-lg-6 property_col">
 					<div class="property">
 						<div class="property_image">
-							<img src="images/65c17dffeb3fb966760523.webp" alt="">
-							<div class="tag_featured property_tag"><a href="#">مرفوض </a></div>
+							<img src="{{URL::asset('/img/temp/'.$cancleds->estate_image)}}" alt="">
+							<div class="tag_featured property_tag pp"><a href="#">مرفوض </a></div>
 						</div>
 						<div class="property_body text-center">
-							<div class="property_location">{{$cancleds->type}}</div>
-							<div class="property_title"><a href="#">{{$cancleds->purpose}}</a></div>
-							<div class="property_title"><a href="#">{{$cancleds->neighborhood->region->name}}</a></div>
-							<div class="property_price">{{$cancleds->price}}</div>
+							<div class="property_location pp">{{$cancleds->type}}</div>
+							<div class="property_title pp"><a href="#">{{$cancleds->purpose}}</a></div>
+							<div class="property_title pp"><a href="#">{{$cancleds->neighborhood->region->name}}</a></div>
+							<div class="property_price pp">{{$cancleds->price}}</div>
 						</div>
-						<div class="property_footer d-flex flex-row align-items-center justify-content-start" style="background: #9b4e4e;">
+						<div class="property_footer d-flex flex-row align-items-center justify-content-start pp" style="background: #9b4e4e;direction: rtl;">
 							<div>{{$cancleds->reason}}</div>
 							<!-- <div><div class="property_icon"><img src="images/icon_2.png" alt=""></div><span>3 Rooms</span></div>
 							<div><div class="property_icon"><img src="images/icon_3.png" alt=""></div><span>3 Bathrooms</span></div> -->
@@ -74,13 +74,13 @@
 					<div class="property">
 						<div class="property_image">
 							<img src="{{URL::asset('/img/estate/'.$accepteds->estate_image)}}" alt="">
-							<div class="tag_featured property_tag"><a href="#">مقبول  </a></div>
+							<div class="tag_featured property_tag pp"><a href="#">مقبول  </a></div>
 						</div>
 						<div class="property_body text-center">
-							<div class="property_location">{{$accepteds->type}}</div>
-							<div class="property_title"><a href="#">{{$accepteds->purpose}}</a></div>
-							<div class="property_title"><a href="#">{{$accepteds->neighborhood->region->name}}</a></div>
-							<div class="property_price">{{$accepteds->price}}</div>
+							<div class="property_location pp">{{$accepteds->type}}</div>
+							<div class="property_title pp"><a href="#">{{$accepteds->purpose}}</a></div>
+							<div class="property_title pp"><a href="#">{{$accepteds->neighborhood->region->name}}</a></div>
+							<div class="property_price pp">{{$accepteds->price}}</div>
 						</div>
 						<!-- <div class="property_footer d-flex flex-row align-items-center justify-content-start">
 							<div><div class="property_icon"><img src="images/icon_1.png" alt=""></div><span>650 Ftsq</span></div>

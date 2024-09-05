@@ -9,6 +9,8 @@ use App\Models\Property;
 use App\Models\Region;
 use App\Models\Neighborhood;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
+
 use DateTime;
 
 class TempController extends Controller
@@ -132,10 +134,6 @@ class TempController extends Controller
         if( !auth()->check()){
 
             return redirect('login');
-
-
-
-
 
         }
     else{

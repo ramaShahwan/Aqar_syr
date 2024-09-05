@@ -1,10 +1,5 @@
 <!-- Header -->
-<style>
-    .main_nav ul li a:hover {
-    /* font-weight: 500; */
-    padding: 0px;
-}
- </style>
+
 <header class="header">
 		<div class="container">
 			<div class="row">
@@ -14,7 +9,7 @@
 							<a href="#"><img src="{{asset('images/tt.png')}}" alt=""  height="100px"></a>
 						</div>
 						<nav class="main_nav" >
-							<ul>
+							<ul style="margin-bottom: 0;">
                             @if(auth()->check() && auth()->user()->role === 'admin')
     <li><a href="{{ route('dashboardd') }}">لوحة التحكم</a></li>
 @endif
@@ -28,11 +23,12 @@
     <li><a href="{{ route('login') }}">تسجيل دخول</a></li>
 @endif
                             <li><a href="{{route('contact')}}">تواصل</a></li>
-                            @if(auth()->check() && auth()->user()->role === 'user')
+
 
                             <li><a href="{{url('show')}}">الوكلاء العقاريين</a></li>
-                            <li><a href="{{ url('getMyEstate') }}">طلب عقاري</a></li>
-                            @endif
+                            <li><a href="{{url('getMyEstate')}}">طلب عقاري</a></li>
+
+
                             <li><a href="{{route('about')}}">من نحن</a></li>
                             <li class="active"><a href="{{route('home')}}">الرئيسية</a></li>
 
@@ -74,11 +70,11 @@
 			<ul>
 				<li class="active"><a href="{{route('home')}}">الرئيسية</a></li>
 								<li><a href="{{route('about')}}">من نحن</a></li>
-                                @if(auth()->check() && auth()->user()->role === 'user')
 
+
+                                <li><a href="{{ url('getMyEstate') }}">طلب عقاري</a></li>
                                 <li><a href="{{url('show')}}">الوكلاء العقاريين</a></li>
-								<li><a href="{{ url('getMyEstate') }}">طلب عقاري</a></li>
-                                @endif
+
 								<li><a href="{{route('contact')}}">تواصل</a></li>
                                 @if(auth()->check())
     <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج</a>

@@ -8,7 +8,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<div class="home_content d-flex flex-row align-items-end justify-content-start">
+						<div class="home_content d-flex flex-row align-items-end justify-content-start" style="direction: rtl;">
 							<div class="home_title" style="color: #FFFFFF;">عقارات مدينة </div>
 
 						</div>
@@ -71,7 +71,7 @@
 
 	<!-- Properties -->
 
-	<div class="properties">
+	<div class="properties" style="direction: rtl;">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -95,7 +95,7 @@
 							<div class="property_price">{{$call->price}}</div>
 						</div>
 						@if($call->type != 'غرفة' && $call->type != 'محل'  && $call->type != 'أرض')
-						<div class="property_footer d-flex flex-row align-items-center justify-content-start pp">
+						<div class="property_footer d-flex flex-row align-items-center justify-content-start pp" style="    direction: ltr;">
 							<div><div class="property_icon"><img src="{{asset('images/icon_1.png')}}" alt=""></div><span>{{$call->space}}</span></div>
 							<div><div class="property_icon"><img src="{{asset('images/icon_2.png')}}" alt=""></div><span>{{$call->room}} Rooms</span></div>
 							<div><div class="property_icon"><img src="{{asset('images/icon_3.png')}}" alt=""></div><span>{{$call->bathroom}} Bathrooms</span></div>
